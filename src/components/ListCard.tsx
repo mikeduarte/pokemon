@@ -1,16 +1,10 @@
 import { Fade, Grid, Box } from '@mui/material';
 
-import { PokemonPreview } from './PokemonList';
-
 import PokemonLink from './common/PokemonLink';
 import PokemonHorizontalCard from './PokemonHorizontalCard';
+import { LayoutProps } from './types/LayoutProps';
 
-interface ListLayoutProps {
-  pokemon: PokemonPreview;
-  isFiltering: boolean;
-}
-
-const ListCard = ({ pokemon, isFiltering }: ListLayoutProps) => {
+const ListCard = ({ id, image, isFavorite, name, types, isFiltering }: LayoutProps) => {
   return (
     <Grid item xs={12}>
       <Fade
@@ -20,8 +14,14 @@ const ListCard = ({ pokemon, isFiltering }: ListLayoutProps) => {
         }}
       >
         <Box>
-          <PokemonLink id={pokemon.id} name={pokemon.name}>
-            <PokemonHorizontalCard pokemon={pokemon} />
+          <PokemonLink id={id} name={name}>
+            <PokemonHorizontalCard
+              id={id}
+              image={image}
+              isFavorite={isFavorite}
+              name={name}
+              types={types}
+            />
           </PokemonLink>
         </Box>
       </Fade>

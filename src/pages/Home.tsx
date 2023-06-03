@@ -15,11 +15,11 @@ import {
 import ViewListIcon from '@mui/icons-material/ViewList';
 import ViewModuleIcon from '@mui/icons-material/ViewModule';
 import SearchIcon from '@mui/icons-material/Search';
-import PokemonList, { PokemonTypes } from '../components/PokemonList';
+import PokemonList from '../components/PokemonList';
 import { useGetPokemonTypes } from '../api/hooks';
-
-export type TabViewTypes = 'all' | 'favorites';
-export type LayoutTypes = 'grid' | 'list';
+import { PokemonTypes } from '../types/PokemonTypes';
+import { TabViewTypes } from '../types/TabViewTypes';
+import { LayoutTypes } from '../types/LayoutTypes';
 
 const Home = () => {
   const [tabView, setTabView] = useState<TabViewTypes>('all');

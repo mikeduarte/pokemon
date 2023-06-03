@@ -1,9 +1,26 @@
 import { Avatar, Badge, Chip, Divider, Stack, Typography } from '@mui/material';
-import { Pokemon } from '../PokemonList';
+
 import FavoriteButton from './FavoriteButton';
 import useMobileBreakpoint from '../../hooks/useMobileBreakpoint';
+import { Pokemon } from '../../types/Pokemon';
 
-const PokemonStats = ({ pokemon }: { pokemon: Pokemon }) => {
+type PokemonStatsProps = {
+  evolutions: Pokemon['evolutions'];
+  height: Pokemon['height'];
+  maxCP: Pokemon['maxCP'];
+  maxHP: Pokemon['maxHP'];
+  parentId: Pokemon['id'];
+  weight: Pokemon['weight'];
+};
+
+const PokemonStats = ({
+  evolutions,
+  height,
+  maxCP,
+  maxHP,
+  parentId,
+  weight,
+}: PokemonStatsProps) => {
   const { isMobileBreakpoint } = useMobileBreakpoint();
 
   return (
@@ -41,7 +58,7 @@ const PokemonStats = ({ pokemon }: { pokemon: Pokemon }) => {
               Weight
             </Typography>
             <Typography variant="body2">
-              {pokemon?.weight.minimum} - {pokemon?.weight.maximum}
+              {weight.minimum} - {weight.maximum}
             </Typography>
           </Stack>
           <Divider
@@ -57,7 +74,7 @@ const PokemonStats = ({ pokemon }: { pokemon: Pokemon }) => {
               Height
             </Typography>
             <Typography variant="body2">
-              {pokemon?.height.minimum} - {pokemon?.height.maximum}
+              {height.minimum} - {height.maximum}
             </Typography>
           </Stack>
         </Stack>
@@ -66,7 +83,7 @@ const PokemonStats = ({ pokemon }: { pokemon: Pokemon }) => {
             size="small"
             variant="outlined"
             avatar={<Avatar sx={{ color: 'white !important' }}>CP</Avatar>}
-            label={pokemon?.maxCP}
+            label={maxCP}
             color="primary"
             sx={{
               background: 'white',
@@ -76,7 +93,7 @@ const PokemonStats = ({ pokemon }: { pokemon: Pokemon }) => {
             size="small"
             variant="outlined"
             avatar={<Avatar sx={{ color: 'white !important' }}>HP</Avatar>}
-            label={pokemon?.maxHP}
+            label={maxHP}
             color="secondary"
             sx={{
               background: 'white',
@@ -84,7 +101,7 @@ const PokemonStats = ({ pokemon }: { pokemon: Pokemon }) => {
           />
         </Stack>
       </Stack>
-      {!!pokemon?.evolutions?.length && (
+      {!!evolutions?.length && (
         <>
           {!isMobileBreakpoint && (
             <Divider orientation="vertical" flexItem light variant="middle" />
@@ -104,7 +121,7 @@ const PokemonStats = ({ pokemon }: { pokemon: Pokemon }) => {
               Evolutions
             </Typography>
             <Stack direction="row" spacing={2} mt={1}>
-              {pokemon?.evolutions.map((evolution) => (
+              {evolutions.map((evolution) => (
                 <Badge
                   key={evolution.id}
                   overlap="circular"
@@ -113,7 +130,7 @@ const PokemonStats = ({ pokemon }: { pokemon: Pokemon }) => {
                     <FavoriteButton
                       id={evolution.id}
                       isFavorite={evolution.isFavorite}
-                      parentId={pokemon.id}
+                      parentId={parentId}
                     />
                   }
                 >

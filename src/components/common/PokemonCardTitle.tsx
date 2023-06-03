@@ -1,5 +1,5 @@
 import { Typography } from '@mui/material';
-import { Pokemon } from '../PokemonList';
+import { Pokemon } from '../../types/Pokemon';
 
 type PokemonCardTitleProps = {
   name: Pokemon['name'];

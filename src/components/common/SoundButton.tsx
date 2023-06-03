@@ -1,6 +1,6 @@
 import { IconButton } from '@mui/material';
 import VolumeMuteIcon from '@mui/icons-material/VolumeMute';
-import { Pokemon } from '../PokemonList';
+import { Pokemon } from '../../types/Pokemon';
 
 const SoundButton = ({ sound }: { sound: Pokemon['sound'] }) => {
   const handleButtonClick = () => {

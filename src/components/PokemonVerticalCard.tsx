@@ -2,20 +2,29 @@ import { ReactNode } from 'react';
 import { Box, Card, CardContent, Stack } from '@mui/material';
 import FavoriteButton from './common/FavoriteButton';
 import PokemonImage from './common/PokemonImage';
-import { Pokemon, PokemonPreview } from './PokemonList';
+
 import SoundButton from './common/SoundButton';
 import PokemonCardTitle from './common/PokemonCardTitle';
+import { Pokemon } from '../types/Pokemon';
 
 interface PokemonCardProps {
-  pokemon: PokemonPreview | Pokemon;
-  sound?: Pokemon['sound'];
   disableBorder?: boolean;
   disableHover?: boolean;
   children?: ReactNode;
+  id: Pokemon['id'];
+  image: Pokemon['image'];
+  isFavorite: Pokemon['isFavorite'];
+  name: Pokemon['name'];
+  types: Pokemon['types'];
+  sound?: Pokemon['sound'];
 }
 
 const PokemonVerticalCard = ({
-  pokemon,
+  id,
+  image,
+  isFavorite,
+  name,
+  types,
   sound,
   disableBorder,
   disableHover,
@@ -39,12 +48,12 @@ const PokemonVerticalCard = ({
         <Stack direction="row" justifyContent="space-between" width="100%">
           {sound && <SoundButton sound={sound} />}
           <Box sx={{ ml: 'auto' }}>
-            <FavoriteButton id={pokemon.id} isFavorite={pokemon.isFavorite} />
+            <FavoriteButton id={id} isFavorite={isFavorite} />
           </Box>
         </Stack>
       </Box>
       <Stack height="100%">
-        <PokemonImage pokemon={pokemon} />
+        <PokemonImage image={image} name={name} />
         <CardContent
           sx={{
             flexDirection: 'column',
@@ -54,7 +63,7 @@ const PokemonVerticalCard = ({
             },
           }}
         >
-          <PokemonCardTitle name={pokemon.name} types={pokemon.types} />
+          <PokemonCardTitle name={name} types={types} />
         </CardContent>
         {children}
       </Stack>

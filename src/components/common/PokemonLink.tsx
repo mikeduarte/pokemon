@@ -1,8 +1,7 @@
 import { ReactNode } from 'react';
 import { Link as RouterLink } from 'react-router-dom';
 import { Link } from '@mui/material';
-
-import { Pokemon } from '../PokemonList';
+import { Pokemon } from '../../types/Pokemon';
 
 type PokemonLinkProps = {
   id: Pokemon['id'];

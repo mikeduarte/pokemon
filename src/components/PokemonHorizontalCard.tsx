@@ -1,14 +1,19 @@
 import { Box, Card, CardContent, Stack } from '@mui/material';
 import FavoriteButton from './common/FavoriteButton';
 import PokemonImage from './common/PokemonImage';
-import { Pokemon, PokemonPreview } from './PokemonList';
+
 import PokemonCardTitle from './common/PokemonCardTitle';
+import { Pokemon } from '../types/Pokemon';
 
 interface PokemonCardProps {
-  pokemon: PokemonPreview | Pokemon;
+  id: Pokemon['id'];
+  image: Pokemon['image'];
+  isFavorite: Pokemon['isFavorite'];
+  name: Pokemon['name'];
+  types: Pokemon['types'];
 }
 
-const PokemonHorizontalCard = ({ pokemon }: PokemonCardProps) => {
+const PokemonHorizontalCard = ({ id, image, isFavorite, name, types }: PokemonCardProps) => {
   return (
     <Card
       variant="outlined"
@@ -36,7 +41,8 @@ const PokemonHorizontalCard = ({ pokemon }: PokemonCardProps) => {
           }}
         >
           <PokemonImage
-            pokemon={pokemon}
+            image={image}
+            name={name}
             sx={{
               width: '120px',
               height: '100%',
@@ -49,9 +55,9 @@ const PokemonHorizontalCard = ({ pokemon }: PokemonCardProps) => {
             width: '100%',
           }}
         >
-          <PokemonCardTitle name={pokemon.name} types={pokemon.types} />
+          <PokemonCardTitle name={name} types={types} />
         </CardContent>
-        <FavoriteButton id={pokemon.id} isFavorite={pokemon.isFavorite} />
+        <FavoriteButton id={id} isFavorite={isFavorite} />
       </Stack>
     </Card>
   );

@@ -1,17 +1,18 @@
 import { CardMedia, SxProps } from '@mui/material';
-import { PokemonPreview } from '../PokemonList';
+import { Pokemon } from '../../types/Pokemon';
 
 type PokemonImageProps = {
-  pokemon: PokemonPreview;
+  image: Pokemon['image'];
+  name: Pokemon['name'];
   sx?: SxProps;
 };
 
-const PokemonImage = ({ pokemon, sx = {} }: PokemonImageProps) => {
+const PokemonImage = ({ image, name, sx = {} }: PokemonImageProps) => {
   return (
     <CardMedia
       component="img"
-      image={pokemon?.image}
-      alt={pokemon?.name}
+      image={image}
+      alt={name}
       sx={{
         objectFit: 'scale-down',
         maxWidth: '100%',

@@ -5,11 +5,12 @@ import FavoriteTwoToneIcon from '@mui/icons-material/FavoriteTwoTone';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 
 import { usePostPokemonFavorite } from '../../api/hooks';
+import { Pokemon } from '../../types/Pokemon';
 
 interface FavoriteButtonProps {
-  id: string;
-  isFavorite: boolean;
-  parentId?: string;
+  id: Pokemon['id'];
+  isFavorite: Pokemon['isFavorite'];
+  parentId?: Pokemon['id'];
 }
 
 const FavoriteButton = ({ id, isFavorite, parentId }: FavoriteButtonProps) => {
