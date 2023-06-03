@@ -1,7 +1,7 @@
 import { Fade, Grid, Box } from '@mui/material';
 
 import { PokemonPreview } from './PokemonList';
-import PokemonCard from './common/PokemonCard';
+import PokemonVerticalCard from './PokemonVerticalCard';
 import PokemonLink from './common/PokemonLink';
 
 interface GridLayoutProps {
@@ -33,7 +33,7 @@ const GridCard = ({ pokemon, isFiltering }: GridLayoutProps) => {
           }}
         >
           <PokemonLink id={pokemon.id} name={pokemon.name}>
-            <PokemonCard pokemon={pokemon} />
+            <PokemonVerticalCard pokemon={pokemon} />
           </PokemonLink>
         </Box>
       </Fade>

@@ -1,10 +1,10 @@
 import { ReactNode } from 'react';
 import { Box, Card, CardContent, Stack } from '@mui/material';
-import FavoriteButton from './FavoriteButton';
-import PokemonImage from './PokemonImage';
-import { Pokemon, PokemonPreview } from '../PokemonList';
-import SoundButton from './SoundButton';
-import PokemonCardTitle from './PokemonCardTitle';
+import FavoriteButton from './common/FavoriteButton';
+import PokemonImage from './common/PokemonImage';
+import { Pokemon, PokemonPreview } from './PokemonList';
+import SoundButton from './common/SoundButton';
+import PokemonCardTitle from './common/PokemonCardTitle';
 
 interface PokemonCardProps {
   pokemon: PokemonPreview | Pokemon;
@@ -14,7 +14,7 @@ interface PokemonCardProps {
   children?: ReactNode;
 }
 
-const PokemonCard = ({
+const PokemonVerticalCard = ({
   pokemon,
   sound,
   disableBorder,
@@ -62,4 +62,4 @@ const PokemonCard = ({
   );
 };
 
-export default PokemonCard;
+export default PokemonVerticalCard;

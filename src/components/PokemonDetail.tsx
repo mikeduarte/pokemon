@@ -3,7 +3,7 @@ import { Grid, Modal, Stack } from '@mui/material';
 
 import { useGetPokemon } from '../api/hooks';
 import PokemonLoader from './common/PokemonLoader';
-import PokemonCard from './common/PokemonCard';
+import PokemonCard from './PokemonVerticalCard';
 import PokemonStats from './common/PokemonStats';
 import useMobileBreakpoint from '../hooks/useMobileBreakpoint';
 

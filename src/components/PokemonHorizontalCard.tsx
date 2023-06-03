@@ -1,8 +1,8 @@
 import { Box, Card, CardContent, Stack } from '@mui/material';
-import FavoriteButton from './FavoriteButton';
-import PokemonImage from './PokemonImage';
-import { Pokemon, PokemonPreview } from '../PokemonList';
-import PokemonCardTitle from './PokemonCardTitle';
+import FavoriteButton from './common/FavoriteButton';
+import PokemonImage from './common/PokemonImage';
+import { Pokemon, PokemonPreview } from './PokemonList';
+import PokemonCardTitle from './common/PokemonCardTitle';
 
 interface PokemonCardProps {
   pokemon: PokemonPreview | Pokemon;

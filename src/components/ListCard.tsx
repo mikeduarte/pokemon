@@ -3,7 +3,7 @@ import { Fade, Grid, Box } from '@mui/material';
 import { PokemonPreview } from './PokemonList';
 
 import PokemonLink from './common/PokemonLink';
-import PokemonHorizontalCard from './common/PokemonHorizontalCard';
+import PokemonHorizontalCard from './PokemonHorizontalCard';
 
 interface ListLayoutProps {
   pokemon: PokemonPreview;
