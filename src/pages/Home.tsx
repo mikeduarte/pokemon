@@ -60,8 +60,6 @@ const Home = () => {
     setLayout(value);
   };
 
-  console.log(layout);
-
   return (
     <>
       <Paper
