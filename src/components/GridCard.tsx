@@ -1,15 +1,15 @@
-import { Fade, Grid, Link } from '@mui/material';
-import { Link as RouterLink } from 'react-router-dom';
+import { Fade, Grid, Box } from '@mui/material';
 
 import { PokemonPreview } from './PokemonList';
 import PokemonCard from './common/PokemonCard';
+import PokemonLink from './common/PokemonLink';
 
 interface GridLayoutProps {
   pokemon: PokemonPreview;
   isFiltering: boolean;
 }
 
-const GridLayout = ({ pokemon, isFiltering }: GridLayoutProps) => {
+const GridCard = ({ pokemon, isFiltering }: GridLayoutProps) => {
   return (
     <Grid
       item
@@ -27,20 +27,18 @@ const GridLayout = ({ pokemon, isFiltering }: GridLayoutProps) => {
           enter: isFiltering ? 0 : 800,
         }}
       >
-        <Link
-          component={RouterLink}
-          underline="none"
-          to={`/${pokemon.name}/${pokemon.id}`}
+        <Box
           sx={{
-            display: 'block',
             height: '100%',
           }}
         >
-          <PokemonCard pokemon={pokemon} />
-        </Link>
+          <PokemonLink id={pokemon.id} name={pokemon.name}>
+            <PokemonCard pokemon={pokemon} />
+          </PokemonLink>
+        </Box>
       </Fade>
     </Grid>
   );
 };
 
-export default GridLayout;
+export default GridCard;

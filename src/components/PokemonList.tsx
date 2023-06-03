@@ -1,13 +1,16 @@
 import { useInView } from 'react-intersection-observer';
 import { Grid } from '@mui/material';
-import { useGetPokemonPageable } from '../api/hooks';
-import LoadingPlaceholder from './LoadingPlaceholder';
+
 import { LayoutTypes, TabViewTypes } from '../pages/Home';
 
+import { useGetPokemonPageable } from '../api/hooks';
+
 import PokemonLoader from './common/PokemonLoader';
-import GridLayout from './GridLayout';
-import ListLayout from './ListLayout';
-import HorizontalLoadingPlaceholder from './HorizontalLoadingPlaceholder';
+import GridCardPlaceholder from './GridCardPlaceholder';
+import ListCardPlaceholder from './ListCardPlaceholder';
+
+import GridCard from './GridCard';
+import ListCard from './ListCard';
 
 export interface Pokemon extends PokemonPreview {
   weight: {
@@ -107,18 +110,18 @@ const PokemonList = ({ tabView, searchTerm, selectedType, layout }: PokemonListP
               if (isFavoriteView && !pokemon.isFavorite) return null;
 
               if (layout === 'grid') {
-                return <GridLayout pokemon={pokemon} isFiltering={isFiltering} key={pokemon.id} />;
+                return <GridCard pokemon={pokemon} isFiltering={isFiltering} key={pokemon.id} />;
               }
 
-              return <ListLayout pokemon={pokemon} isFiltering={isFiltering} key={pokemon.id} />;
+              return <ListCard pokemon={pokemon} isFiltering={isFiltering} key={pokemon.id} />;
             });
           })}
         {isFetchingNextPage &&
           hasNextPage &&
           (layout === 'list' ? (
-            <HorizontalLoadingPlaceholder count={12} />
+            <ListCardPlaceholder count={12} />
           ) : (
-            <LoadingPlaceholder count={12} />
+            <GridCardPlaceholder count={12} />
           ))}
 
         {!isLoading && hasNextPage && <Grid item xs={12} ref={ref} sx={{ mt: '-300px' }}></Grid>}

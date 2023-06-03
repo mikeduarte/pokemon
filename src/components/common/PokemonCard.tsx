@@ -1,9 +1,10 @@
 import { ReactNode } from 'react';
-import { Box, Card, CardActions, Stack, Typography } from '@mui/material';
+import { Box, Card, CardContent, Stack } from '@mui/material';
 import FavoriteButton from './FavoriteButton';
 import PokemonImage from './PokemonImage';
 import { Pokemon, PokemonPreview } from '../PokemonList';
 import SoundButton from './SoundButton';
+import PokemonCardTitle from './PokemonCardTitle';
 
 interface PokemonCardProps {
   pokemon: PokemonPreview | Pokemon;
@@ -44,19 +45,17 @@ const PokemonCard = ({
       </Box>
       <Stack height="100%">
         <PokemonImage pokemon={pokemon} />
-        <CardActions
+        <CardContent
           sx={{
             flexDirection: 'column',
             padding: (theme) => theme.spacing(3, 2, 2, 2),
+            '&:last-child': {
+              paddingBottom: 2,
+            },
           }}
         >
-          <Typography component="h2" variant="h6">
-            {pokemon.name}
-          </Typography>
-          <Typography variant="body2" color="text.secondary">
-            {pokemon.types?.join(', ')}
-          </Typography>
-        </CardActions>
+          <PokemonCardTitle name={pokemon.name} types={pokemon.types} />
+        </CardContent>
         {children}
       </Stack>
     </Card>

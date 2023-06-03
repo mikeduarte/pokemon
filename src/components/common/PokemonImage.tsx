@@ -1,7 +1,12 @@
-import { CardMedia } from '@mui/material';
+import { CardMedia, SxProps } from '@mui/material';
 import { PokemonPreview } from '../PokemonList';
 
-const PokemonImage = ({ pokemon }: { pokemon: PokemonPreview }) => {
+type PokemonImageProps = {
+  pokemon: PokemonPreview;
+  sx?: SxProps;
+};
+
+const PokemonImage = ({ pokemon, sx = {} }: PokemonImageProps) => {
   return (
     <CardMedia
       component="img"
@@ -13,6 +18,7 @@ const PokemonImage = ({ pokemon }: { pokemon: PokemonPreview }) => {
         flexGrow: 1,
         height: '1px',
         padding: (theme) => theme.spacing(2),
+        ...sx,
       }}
     />
   );

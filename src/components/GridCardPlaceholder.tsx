@@ -1,6 +1,6 @@
 import { Grid, Skeleton, Card, Stack } from '@mui/material';
 
-const LoadingPlaceholder = ({ count }: { count: number }) => (
+const GridCardPlaceholder = ({ count }: { count: number }) => (
   <>
     {Array(count)
       .fill({})
@@ -56,4 +56,4 @@ const LoadingPlaceholder = ({ count }: { count: number }) => (
   </>
 );
 
-export default LoadingPlaceholder;
+export default GridCardPlaceholder;
