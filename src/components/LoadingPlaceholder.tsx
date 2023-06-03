@@ -5,8 +5,18 @@ const LoadingPlaceholder = ({ count }: { count: number }) => (
     {Array(count)
       .fill({})
       .map((_x, idx) => (
-        <Grid item xs={3} key={`placeholder-${idx}`}>
-          <Card variant="outlined">
+        <Grid
+          item
+          key={`placeholder-${idx}`}
+          xs={12}
+          sm={6}
+          md={4}
+          lg={3}
+          sx={{
+            aspectRatio: '1 / 1.25',
+          }}
+        >
+          <Card variant="outlined" sx={{ height: '100%' }}>
             <Stack
               spacing={1}
               alignContent="center"
@@ -14,11 +24,7 @@ const LoadingPlaceholder = ({ count }: { count: number }) => (
               sx={{
                 display: 'flex',
                 flexDirection: 'column',
-                height: {
-                  xs: '50vh',
-                  sm: '50vh',
-                  md: '40vh',
-                },
+                height: '100%',
                 padding: (theme) => theme.spacing(2),
               }}
             >

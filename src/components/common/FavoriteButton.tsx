@@ -1,3 +1,4 @@
+import { MouseEvent } from 'react';
 import { useQueryClient } from '@tanstack/react-query';
 import { IconButton } from '@mui/material';
 import FavoriteTwoToneIcon from '@mui/icons-material/FavoriteTwoTone';
@@ -15,7 +16,9 @@ const FavoriteButton = ({ id, isFavorite, parentId }: FavoriteButtonProps) => {
   const queryClient = useQueryClient();
   const favoriteMutation = usePostPokemonFavorite();
 
-  const onFavoriteClick = () => {
+  const onFavoriteClick = (event: MouseEvent<HTMLButtonElement>) => {
+    event.preventDefault();
+
     favoriteMutation.mutate(
       { id, isFavorite: !isFavorite },
       {
@@ -30,7 +33,7 @@ const FavoriteButton = ({ id, isFavorite, parentId }: FavoriteButtonProps) => {
     <IconButton
       size="small"
       disableRipple
-      onClick={onFavoriteClick}
+      onClick={(event) => onFavoriteClick(event)}
       disabled={favoriteMutation.isLoading ? true : false}
     >
       {!isFavorite ? (

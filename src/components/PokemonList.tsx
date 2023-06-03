@@ -1,20 +1,9 @@
-//import { Link as RouterLink } from 'react-router-dom';
 import { useInView } from 'react-intersection-observer';
-import {
-  Grid,
-  // Stack,
-  // Card,
-  // CardMedia,
-  // Typography,
-  // Link,
-  // CardActions,
-  // Fade,
-  // CardHeader,
-} from '@mui/material';
+import { Grid } from '@mui/material';
 import { useGetPokemonPageable } from '../api/hooks';
 import LoadingPlaceholder from './LoadingPlaceholder';
 import { LayoutTypes, TabViewTypes } from '../pages/Home';
-//import FavoriteButton from './common/FavoriteButton';
+
 import PokemonLoader from './common/PokemonLoader';
 import GridLayout from './GridLayout';
 import ListLayout from './ListLayout';

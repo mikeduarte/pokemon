@@ -70,7 +70,7 @@ const Home = () => {
           top: 0,
           p: 2,
           boxShadow: (theme) => theme.shadows[2],
-          zIndex: 99,
+          zIndex: (theme) => theme.zIndex.appBar,
         }}
       >
         <Stack spacing={2} maxWidth="lg" margin="auto">
@@ -141,7 +141,7 @@ const Home = () => {
           </Stack>
         </Stack>
       </Paper>
-      <Container>
+      <Container disableGutters>
         <PokemonList
           tabView={tabView}
           searchTerm={searchTerm}
