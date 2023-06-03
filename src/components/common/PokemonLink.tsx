@@ -11,7 +11,7 @@ type PokemonLinkProps = {
 
 const PokemonLink = ({ id, name, children }: PokemonLinkProps) => {
   return (
-    <Link component={RouterLink} underline="none" to={`/${name}/${id}`}>
+    <Link component={RouterLink} underline="none" to={`/${name}/${id}`} title={name}>
       {children}
     </Link>
   );

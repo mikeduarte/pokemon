@@ -57,7 +57,7 @@ const PokemonHorizontalCard = ({ id, image, isFavorite, name, types }: PokemonCa
         >
           <PokemonCardTitle name={name} types={types} />
         </CardContent>
-        <FavoriteButton id={id} isFavorite={isFavorite} />
+        <FavoriteButton id={id} isFavorite={isFavorite} name={name} />
       </Stack>
     </Card>
   );

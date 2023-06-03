@@ -10,10 +10,11 @@ import { Pokemon } from '../../types/Pokemon';
 interface FavoriteButtonProps {
   id: Pokemon['id'];
   isFavorite: Pokemon['isFavorite'];
+  name: Pokemon['name'];
   parentId?: Pokemon['id'];
 }
 
-const FavoriteButton = ({ id, isFavorite, parentId }: FavoriteButtonProps) => {
+const FavoriteButton = ({ id, isFavorite, name, parentId }: FavoriteButtonProps) => {
   const queryClient = useQueryClient();
   const favoriteMutation = usePostPokemonFavorite();
 
@@ -36,6 +37,9 @@ const FavoriteButton = ({ id, isFavorite, parentId }: FavoriteButtonProps) => {
       disableRipple
       onClick={(event) => onFavoriteClick(event)}
       disabled={favoriteMutation.isLoading ? true : false}
+      aria-label={`${isFavorite ? 'Remove' : 'Add'} ${name} ${
+        isFavorite ? 'from' : 'to'
+      } favorites`}
     >
       {!isFavorite ? (
         <FavoriteTwoToneIcon color="error" sx={{ fontSize: '1.25rem' }} />

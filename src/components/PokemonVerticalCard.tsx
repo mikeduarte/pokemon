@@ -46,9 +46,13 @@ const PokemonVerticalCard = ({
     >
       <Box sx={{ width: '100%', position: 'absolute', left: '0', top: '8px', pr: 1, zIndex: 99 }}>
         <Stack direction="row" justifyContent="space-between" width="100%">
-          {sound && <SoundButton sound={sound} />}
+          {sound && (
+            <Box sx={{ mt: -0.5 }}>
+              <SoundButton sound={sound} name={name} />
+            </Box>
+          )}
           <Box sx={{ ml: 'auto' }}>
-            <FavoriteButton id={id} isFavorite={isFavorite} />
+            <FavoriteButton id={id} isFavorite={isFavorite} name={name} />
           </Box>
         </Stack>
       </Box>

@@ -131,10 +131,10 @@ const Home = () => {
               onChange={(_event, value) => handleLayoutChange(value)}
               aria-label="Layout View"
             >
-              <ToggleButton value="grid">
+              <ToggleButton value="grid" aria-label="Grid View">
                 <ViewModuleIcon />
               </ToggleButton>
-              <ToggleButton value="list">
+              <ToggleButton value="list" aria-label="List View">
                 <ViewListIcon />
               </ToggleButton>
             </ToggleButtonGroup>

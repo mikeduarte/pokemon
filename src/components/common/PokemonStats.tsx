@@ -130,6 +130,7 @@ const PokemonStats = ({
                     <FavoriteButton
                       id={evolution.id}
                       isFavorite={evolution.isFavorite}
+                      name={evolution.name}
                       parentId={parentId}
                     />
                   }

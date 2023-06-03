@@ -86,9 +86,9 @@ const PokemonList = ({ tabView, searchTerm, selectedType, layout }: PokemonListP
         {isFetchingNextPage &&
           hasNextPage &&
           (layout === 'list' ? (
-            <ListCardPlaceholder count={12} />
+            <ListCardPlaceholder count={24} />
           ) : (
-            <GridCardPlaceholder count={12} />
+            <GridCardPlaceholder count={24} />
           ))}
 
         {!isLoading && hasNextPage && <Grid item xs={12} ref={ref} sx={{ mt: '-300px' }}></Grid>}
