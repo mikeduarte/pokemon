@@ -82,7 +82,7 @@ const PokemonLoader = () => (
     }}
     open
   >
-    <StyledLoader />
+    <StyledLoader role="alert" aria-busy="true" />
   </Backdrop>
 );
 

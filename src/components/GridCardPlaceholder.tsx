@@ -6,6 +6,8 @@ const GridCardPlaceholder = ({ count }: { count: number }) => (
       .fill({})
       .map((_x, idx) => (
         <Grid
+          aria-disabled="true"
+          aria-label="loading"
           item
           key={`placeholder-${idx}`}
           xs={12}
