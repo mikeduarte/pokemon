@@ -53,7 +53,7 @@ export const DefaultErrorFallback = ({
       <Typography variant="h6" color="error.dark">
         {display404Message ? "Sorry, we can't find that page!" : 'Something went wrong!'}
       </Typography>
-      <Link component={RouterLink} to={`/`} title="Pokemon home" onClick={handleLinkClick}>
+      <Link component={RouterLink} to={`/pokemon`} title="Pokemon home" onClick={handleLinkClick}>
         <Typography color="secondary">Let's try starting at the beginning</Typography>
       </Link>
     </Stack>
