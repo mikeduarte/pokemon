@@ -91,7 +91,7 @@ const PokemonList = ({ tabView, searchTerm, selectedType, layout }: PokemonListP
             <GridCardPlaceholder count={24} />
           ))}
 
-        {!isLoading && hasNextPage && <Grid item xs={12} ref={ref} sx={{ mt: '-300px' }}></Grid>}
+        {!isLoading && hasNextPage && <Grid item xs={12} ref={ref} sx={{ mt: '-260px' }}></Grid>}
       </Grid>
     </>
   );

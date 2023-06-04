@@ -30,7 +30,6 @@ export const useGetPokemonPageable = ({
   return useInfiniteQuery<PokemonPageable, AxiosError>(['pokemon'], request, {
     cacheTime: Infinity,
     staleTime: Infinity,
-    refetchOnWindowFocus: false,
     getNextPageParam: (lastPage) => {
       const pagesLeft =
         lastPage.count <= lastPage.limit || lastPage.count === lastPage.offset + lastPage.limit
