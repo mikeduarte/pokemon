@@ -7,6 +7,7 @@ import { LayoutProps } from './types/LayoutProps';
 const GridCard = ({ id, image, isFavorite, name, types, isFiltering }: LayoutProps) => {
   return (
     <Grid
+      component="li"
       item
       xs={12}
       sm={6}

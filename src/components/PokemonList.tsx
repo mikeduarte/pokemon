@@ -42,11 +42,15 @@ const PokemonList = ({ tabView, searchTerm, selectedType, layout }: PokemonListP
   return (
     <>
       <Grid
+        component="ul"
         container
         spacing={2}
         p={{
           xs: 2,
           md: 4,
+        }}
+        sx={{
+          listStyle: 'none',
         }}
       >
         {isLoading && <PokemonLoader />}
@@ -91,7 +95,9 @@ const PokemonList = ({ tabView, searchTerm, selectedType, layout }: PokemonListP
             <GridCardPlaceholder count={24} />
           ))}
 
-        {!isLoading && hasNextPage && <Grid item xs={12} ref={ref} sx={{ mt: '-260px' }}></Grid>}
+        {!isLoading && hasNextPage && (
+          <Grid component="li" item xs={12} ref={ref} sx={{ mt: '-260px' }}></Grid>
+        )}
       </Grid>
     </>
   );

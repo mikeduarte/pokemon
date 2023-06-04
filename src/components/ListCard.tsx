@@ -6,7 +6,7 @@ import { LayoutProps } from './types/LayoutProps';
 
 const ListCard = ({ id, image, isFavorite, name, types, isFiltering }: LayoutProps) => {
   return (
-    <Grid item xs={12}>
+    <Grid component="li" item xs={12}>
       <Fade
         in
         timeout={{
