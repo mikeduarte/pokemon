@@ -1,6 +1,7 @@
 import { Backdrop, Box, styled, keyframes } from '@mui/material';
+import { ReactComponent as PokemonBall } from '../../assets/pokemon-ball.svg';
 
-const tada = keyframes`
+const animation = keyframes`
   from {
     transform: scale3d(1, 1, 1);
   }
@@ -29,48 +30,9 @@ const tada = keyframes`
 `;
 
 const StyledLoader = styled(Box)`
-  width: 50px;
-  height: 50px;
-  border-radius: 50px;
-  border: solid 2px black;
-  position: relative;
-  background: linear-gradient(to bottom, #eeeeee 0%, #ffffff 100%);
-  margin: 10px auto;
-
-  &:before,
-  &:after {
-    content: '';
-    display: block;
-  }
-
-  &,
-  &:before,
-  &:after {
-    transition: all 600ms cubic-bezier(0.67, 0.4, 0.36, 0.75);
-  }
-
-  &:before {
-    width: 46px;
-    height: 25px;
-    border-bottom: solid 2px black;
-    border-radius: 25px 25px 0 0;
-    background: linear-gradient(to bottom, #d10000 0%, #ff0000 50%);
-  }
-
-  &:after {
-    content: '';
-    width: 10px;
-    height: 10px;
-    background: linear-gradient(to bottom, #fff 0%, #ccc 100%);
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    border-radius: 50%;
-    box-shadow: 0 0 0 1px black, 0 0 0 2px #ddd, 0 0 0 3.6px black, 0 0 5px 3px rgba(0, 0, 0, 0.4);
-  }
-
-  animation: ${tada} 1200ms infinite;
+  width: 100px;
+  height: auto;
+  animation: ${animation} 1200ms infinite;
 `;
 
 const PokemonLoader = () => (
@@ -82,7 +44,9 @@ const PokemonLoader = () => (
     }}
     open
   >
-    <StyledLoader role="alert" aria-busy="true" />
+    <StyledLoader role="alert" aria-busy="true">
+      <PokemonBall />
+    </StyledLoader>
   </Backdrop>
 );
 

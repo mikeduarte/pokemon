@@ -107,5 +107,6 @@ export const useGetPokemonTypes = () => {
   return useQuery<PokemonTypes[], AxiosError>(['pokemon', 'types'], request, {
     cacheTime: Infinity,
     staleTime: Infinity,
+    useErrorBoundary: false,
   });
 };

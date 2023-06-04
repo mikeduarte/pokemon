@@ -5,6 +5,7 @@ import { ThemeProvider, CssBaseline } from '@mui/material';
 import '@fontsource/roboto';
 
 import Router from './router';
+import SnackbarProvider from './contexts/SnackbarContext';
 import { QUERY_CLIENT_CONFIG } from './config';
 import theme from './theme';
 
@@ -14,13 +15,15 @@ const queryClient = new QueryClient({
 
 function App() {
   return (
-    <ThemeProvider theme={theme}>
-      <QueryClientProvider client={queryClient}>
-        <CssBaseline />
-        <RouterProvider router={Router} />
-        <ReactQueryDevtools />
-      </QueryClientProvider>
-    </ThemeProvider>
+    <SnackbarProvider>
+      <ThemeProvider theme={theme}>
+        <QueryClientProvider client={queryClient}>
+          <CssBaseline />
+          <RouterProvider router={Router} />
+          <ReactQueryDevtools />
+        </QueryClientProvider>
+      </ThemeProvider>
+    </SnackbarProvider>
   );
 }
 

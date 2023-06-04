@@ -1,5 +1,6 @@
 import { MouseEvent } from 'react';
 import { useQueryClient } from '@tanstack/react-query';
+import { useSnackbar } from 'notistack';
 import { IconButton } from '@mui/material';
 import FavoriteTwoToneIcon from '@mui/icons-material/FavoriteTwoTone';
 import FavoriteIcon from '@mui/icons-material/Favorite';
@@ -17,6 +18,7 @@ interface FavoriteButtonProps {
 const FavoriteButton = ({ id, isFavorite, name, parentId }: FavoriteButtonProps) => {
   const queryClient = useQueryClient();
   const favoriteMutation = usePostPokemonFavorite();
+  const { enqueueSnackbar } = useSnackbar();
 
   const onFavoriteClick = (event: MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
@@ -26,6 +28,11 @@ const FavoriteButton = ({ id, isFavorite, name, parentId }: FavoriteButtonProps)
       {
         onSuccess: () => {
           if (parentId) queryClient.invalidateQueries(['pokemon', parentId]);
+        },
+        onError: () => {
+          enqueueSnackbar('Error saving favorite!', {
+            variant: 'error',
+          });
         },
       }
     );

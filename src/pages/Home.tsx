@@ -20,6 +20,7 @@ import { useGetPokemonTypes } from '../api/hooks';
 import { PokemonTypes } from '../types/PokemonTypes';
 import { TabViewTypes } from '../types/TabViewTypes';
 import { LayoutTypes } from '../types/LayoutTypes';
+import { withErrorBoundary } from '../components/ErrorBoundary/ErrorBoundary';
 
 const Home = () => {
   const [tabView, setTabView] = useState<TabViewTypes>('all');
@@ -27,7 +28,7 @@ const Home = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedType, setSelectedType] = useState<PokemonTypes | ''>('');
   const queryClient = useQueryClient();
-  const { data, isLoading } = useGetPokemonTypes();
+  const { data, isLoading, isError } = useGetPokemonTypes();
 
   const pokemonTypes = data?.map((type) => {
     return {
@@ -114,8 +115,8 @@ const Home = () => {
               id="combo-box-demo"
               options={pokemonTypes ?? []}
               sx={{ minWidth: '180px' }}
-              loading={isLoading}
-              loadingText="Loading Pokemon types..."
+              loading={isLoading || isError}
+              loadingText={isError ? 'Error...' : 'Loading...'}
               value={{
                 label: selectedType,
                 value: selectedType,
@@ -154,4 +155,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default withErrorBoundary(Home);
