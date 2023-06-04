@@ -32,6 +32,7 @@ const animation = keyframes`
 const StyledLoader = styled(Box)`
   width: 100px;
   height: auto;
+  filter: drop-shadow(1px 1px 6px darkgrey);
   animation: ${animation} 1200ms infinite;
 `;
 

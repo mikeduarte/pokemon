@@ -93,37 +93,52 @@ const Home = () => {
               </ToggleButton>
             </ToggleButtonGroup>
           </Stack>
-          <Stack direction="row" spacing={2} justifyContent="stretch">
-            <DebounceInput
-              size="small"
-              element={TextField}
-              debounceTimeout={500}
-              onChange={(event) => handleSearchTermChange(event.target.value)}
-              sx={{ width: '100%' }}
-              placeholder="Search"
-              InputProps={{
-                startAdornment: (
-                  <InputAdornment position="start">
-                    <SearchIcon />
-                  </InputAdornment>
-                ),
+          <Stack
+            direction={{
+              xs: 'column',
+              sm: 'row',
+            }}
+            spacing={2}
+          >
+            <Stack
+              direction="row"
+              spacing={{
+                xs: 1,
+                sm: 2,
               }}
-            />
-            <Autocomplete
-              size="small"
-              disablePortal
-              id="combo-box-demo"
-              options={pokemonTypes ?? []}
-              sx={{ minWidth: '180px' }}
-              loading={isLoading || isError}
-              loadingText={isError ? 'Error...' : 'Loading...'}
-              value={{
-                label: selectedType,
-                value: selectedType,
-              }}
-              onChange={(_event, option) => handleTypeChange(option?.value ?? '')}
-              renderInput={(params) => <TextField {...params} label="Type" />}
-            />
+              width="100%"
+            >
+              <DebounceInput
+                size="small"
+                element={TextField}
+                debounceTimeout={500}
+                onChange={(event) => handleSearchTermChange(event.target.value)}
+                sx={{ width: '100%' }}
+                placeholder="Search"
+                InputProps={{
+                  startAdornment: (
+                    <InputAdornment position="start">
+                      <SearchIcon />
+                    </InputAdornment>
+                  ),
+                }}
+              />
+              <Autocomplete
+                size="small"
+                disablePortal
+                id="combo-box-demo"
+                options={pokemonTypes ?? []}
+                sx={{ width: '17rem' }}
+                loading={isLoading || isError}
+                loadingText={isError ? 'Error...' : 'Loading...'}
+                value={{
+                  label: selectedType,
+                  value: selectedType,
+                }}
+                onChange={(_event, option) => handleTypeChange(option?.value ?? '')}
+                renderInput={(params) => <TextField {...params} label="Type" />}
+              />
+            </Stack>
             <ToggleButtonGroup
               size="small"
               color="primary"
@@ -131,6 +146,9 @@ const Home = () => {
               exclusive
               onChange={(_event, value) => handleLayoutChange(value)}
               aria-label="Layout View"
+              sx={{
+                alignSelf: 'flex-end',
+              }}
             >
               <ToggleButton value="grid" aria-label="Grid View">
                 <ViewModuleIcon />

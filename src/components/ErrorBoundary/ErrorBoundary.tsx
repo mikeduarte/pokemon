@@ -31,9 +31,8 @@ export const DefaultErrorFallback = ({
   return (
     <Stack
       direction="column"
-      height="100vh"
       width="100%"
-      sx={{ margin: 'auto' }}
+      sx={{ height: 'calc(100vh - 60px)', margin: 'auto' }}
       justifyContent="center"
       alignItems="center"
       role="alert"
