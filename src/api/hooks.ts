@@ -47,7 +47,6 @@ export const useGetPokemon = (id: Pokemon['id'] | null) => {
 
   return useQuery<Pokemon, AxiosError>(['pokemon', id], request, {
     enabled: Boolean(id),
-    refetchOnWindowFocus: false,
   });
 };
 

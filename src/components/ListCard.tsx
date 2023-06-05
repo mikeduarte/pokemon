@@ -1,12 +1,18 @@
+import { forwardRef } from 'react';
 import { Fade, Grid, Box } from '@mui/material';
 
 import PokemonLink from './common/PokemonLink';
 import PokemonHorizontalCard from './PokemonHorizontalCard';
 import { LayoutProps } from './types/LayoutProps';
 
-const ListCard = ({ id, image, isFavorite, name, types, isFiltering }: LayoutProps) => {
+const ListCard = forwardRef(function ListCard(
+  props: LayoutProps,
+  ref: React.ForwardedRef<HTMLLIElement>
+) {
+  const { id, image, isFavorite, name, types, isFiltering } = props;
+
   return (
-    <Grid component="li" item xs={12}>
+    <Grid component="li" item xs={12} ref={ref}>
       <Fade
         in
         timeout={{
@@ -27,6 +33,6 @@ const ListCard = ({ id, image, isFavorite, name, types, isFiltering }: LayoutPro
       </Fade>
     </Grid>
   );
-};
+});
 
 export default ListCard;

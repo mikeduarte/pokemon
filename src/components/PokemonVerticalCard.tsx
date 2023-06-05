@@ -44,10 +44,12 @@ const PokemonVerticalCard = ({
         },
       }}
     >
-      <Box sx={{ width: '100%', position: 'absolute', left: '0', top: '8px', pr: 1, zIndex: 99 }}>
+      <Box
+        sx={{ width: '100%', position: 'absolute', left: '0', top: '10px', pr: 1.25, zIndex: 99 }}
+      >
         <Stack direction="row" justifyContent="space-between" width="100%">
           {sound && (
-            <Box sx={{ mt: -0.5 }}>
+            <Box sx={{ mt: -0.75 }}>
               <SoundButton sound={sound} name={name} />
             </Box>
           )}

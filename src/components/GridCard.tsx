@@ -1,10 +1,16 @@
+import { forwardRef } from 'react';
 import { Fade, Grid, Box } from '@mui/material';
 
 import PokemonVerticalCard from './PokemonVerticalCard';
 import PokemonLink from './common/PokemonLink';
 import { LayoutProps } from './types/LayoutProps';
 
-const GridCard = ({ id, image, isFavorite, name, types, isFiltering }: LayoutProps) => {
+const GridCard = forwardRef(function GridCard(
+  props: LayoutProps,
+  ref: React.ForwardedRef<HTMLLIElement>
+) {
+  const { id, image, isFavorite, name, types, isFiltering } = props;
+
   return (
     <Grid
       component="li"
@@ -16,6 +22,7 @@ const GridCard = ({ id, image, isFavorite, name, types, isFiltering }: LayoutPro
       sx={{
         aspectRatio: '1 / 1.25',
       }}
+      ref={ref}
     >
       <Fade
         in
@@ -41,6 +48,6 @@ const GridCard = ({ id, image, isFavorite, name, types, isFiltering }: LayoutPro
       </Fade>
     </Grid>
   );
-};
+});
 
 export default GridCard;

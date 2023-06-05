@@ -49,9 +49,9 @@ const FavoriteButton = ({ id, isFavorite, name, parentId }: FavoriteButtonProps)
       } favorites`}
     >
       {!isFavorite ? (
-        <FavoriteTwoToneIcon color="error" sx={{ fontSize: '1.5rem' }} />
+        <FavoriteTwoToneIcon color="error" sx={{ fontSize: '1.65rem' }} />
       ) : (
-        <FavoriteIcon color="error" sx={{ fontSize: '1.5rem' }} />
+        <FavoriteIcon color="error" sx={{ fontSize: '1.65rem' }} />
       )}
     </IconButton>
   );

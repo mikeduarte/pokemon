@@ -24,7 +24,7 @@ const PokemonList = ({ tabView, searchTerm, selectedType, layout }: PokemonListP
 
   const { data, isLoading, isFetchingNextPage, fetchNextPage, hasNextPage } = useGetPokemonPageable(
     {
-      limit: 12,
+      limit: 16,
       type: selectedType,
       search: searchTerm,
       isFavorite: isFavoriteView,
@@ -57,7 +57,7 @@ const PokemonList = ({ tabView, searchTerm, selectedType, layout }: PokemonListP
         {!isLoading &&
           data?.pages &&
           data?.pages?.map((page) => {
-            return page.items?.map((pokemon) => {
+            return page.items?.map((pokemon, index) => {
               if (isFavoriteView && !pokemon.isFavorite) return null;
 
               if (layout === 'grid') {
@@ -70,6 +70,7 @@ const PokemonList = ({ tabView, searchTerm, selectedType, layout }: PokemonListP
                     types={pokemon.types}
                     isFiltering={isFiltering}
                     key={pokemon.id}
+                    ref={index === page.items.length - 5 ? ref : undefined}
                   />
                 );
               }
@@ -83,6 +84,7 @@ const PokemonList = ({ tabView, searchTerm, selectedType, layout }: PokemonListP
                   types={pokemon.types}
                   isFiltering={isFiltering}
                   key={pokemon.id}
+                  ref={index === page.items.length - 7 ? ref : undefined}
                 />
               );
             });
@@ -94,10 +96,6 @@ const PokemonList = ({ tabView, searchTerm, selectedType, layout }: PokemonListP
           ) : (
             <GridCardPlaceholder count={24} />
           ))}
-
-        {!isLoading && hasNextPage && (
-          <Grid component="li" item xs={12} ref={ref} sx={{ mt: '-260px' }}></Grid>
-        )}
       </Grid>
     </>
   );
