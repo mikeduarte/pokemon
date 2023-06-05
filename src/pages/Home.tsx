@@ -43,7 +43,9 @@ const Home = () => {
 
   const handleTabViewChange = (value: TabViewTypes) => {
     clearQueries();
-    setTabView(value);
+    if (value !== null) {
+      setTabView(value);
+    }
   };
 
   const handleTypeChange = (value: PokemonTypes | '') => {
@@ -58,7 +60,9 @@ const Home = () => {
 
   const handleLayoutChange = (value: LayoutTypes) => {
     clearQueries();
-    setLayout(value);
+    if (value !== null) {
+      setLayout(value);
+    }
   };
 
   return (
@@ -75,24 +79,22 @@ const Home = () => {
         }}
       >
         <Stack spacing={2} maxWidth="lg" margin="auto">
-          <Stack>
-            <ToggleButtonGroup
-              size="small"
-              color="primary"
-              value={tabView}
-              exclusive
-              fullWidth
-              onChange={(_event, value) => handleTabViewChange(value)}
-              aria-label="Tab View"
-            >
-              <ToggleButton value="all" sx={{ fontWeight: 'bold' }}>
-                All
-              </ToggleButton>
-              <ToggleButton value="favorites" sx={{ fontWeight: 'bold' }}>
-                Favorites
-              </ToggleButton>
-            </ToggleButtonGroup>
-          </Stack>
+          <ToggleButtonGroup
+            size="small"
+            color="primary"
+            value={tabView}
+            exclusive
+            fullWidth
+            onChange={(_event, value) => handleTabViewChange(value)}
+            aria-label="Tab View"
+          >
+            <ToggleButton value="all" sx={{ fontWeight: 'bold' }}>
+              All
+            </ToggleButton>
+            <ToggleButton value="favorites" sx={{ fontWeight: 'bold' }}>
+              Favorites
+            </ToggleButton>
+          </ToggleButtonGroup>
           <Stack
             direction={{
               xs: 'column',
@@ -126,7 +128,7 @@ const Home = () => {
               <Autocomplete
                 size="small"
                 disablePortal
-                id="combo-box-demo"
+                blurOnSelect
                 options={pokemonTypes ?? []}
                 sx={{ width: '17rem' }}
                 loading={isLoading || isError}

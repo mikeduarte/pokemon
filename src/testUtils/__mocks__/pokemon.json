@@ -1,0 +1,49 @@
+{
+    "id": "001",
+    "name": "Bulbasaur",
+    "types": [
+      "Grass",
+      "Poison"
+    ],
+    "weight": {
+      "minimum": "6.04kg",
+      "maximum": "7.76kg"
+    },
+    "height": {
+      "minimum": "0.61m",
+      "maximum": "0.79m"
+    },
+    "evolutions": [
+      {
+        "id": "002",
+        "number": 2,
+        "name": "Ivysaur",
+        "image": "https://img.pokemondb.net/artwork/ivysaur.jpg",
+        "isFavorite": false,
+        "types": [
+          "Grass",
+          "Poison"
+        ]
+      },
+      {
+        "id": "003",
+        "number": 3,
+        "name": "Venusaur",
+        "image": "https://img.pokemondb.net/artwork/venusaur.jpg",
+        "isFavorite": false,
+        "types": [
+          "Grass",
+          "Poison"
+        ]
+      }
+    ],
+    "maxCP": 951,
+    "maxHP": 1071,
+    "number": 1,
+    "previousEvolutions": [
+      
+    ],
+    "image": "https://img.pokemondb.net/artwork/bulbasaur.jpg",
+    "sound": "https://play.pokemonshowdown.com/audio/cries/bulbasaur.mp3",
+    "isFavorite": true
+  }
