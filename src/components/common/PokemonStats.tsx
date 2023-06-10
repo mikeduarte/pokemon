@@ -25,6 +25,7 @@ const PokemonStats = ({
 
   return (
     <Stack
+      data-testid="pokemon-stats"
       width="100%"
       justifyContent="space-between"
       direction={{
@@ -123,6 +124,7 @@ const PokemonStats = ({
             <Stack direction="row" spacing={2} mt={1}>
               {evolutions.map((evolution) => (
                 <Badge
+                  data-testid={`pokemon-evolution-${evolution.name}`}
                   key={evolution.id}
                   overlap="circular"
                   anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}

@@ -38,6 +38,7 @@ const StyledLoader = styled(Box)`
 
 const PokemonLoader = () => (
   <Backdrop
+    data-testid="pokemon-loader"
     sx={{
       color: '#fff',
       backgroundColor: 'rgba(255, 255, 255, .5)',

@@ -52,6 +52,7 @@
     "gh-pages": "^4.0.0",
     "husky": "^8.0.3",
     "jsdom": "latest",
+    "msw": "1.2.1",
     "prettier": "^2.8.8",
     "shx": "^0.3.4",
     "typescript": "^5.0.2",

@@ -8,20 +8,24 @@ import ListCard from '../ListCard';
 
 const mockPokemon = { ...pokemon } as Pokemon;
 
-it('simple render', () => {
-  render(
-    <ListCard
-      id={mockPokemon.id}
-      image={mockPokemon.image}
-      name={mockPokemon.name}
-      types={mockPokemon.types}
-      isFavorite={false}
-      isFiltering={false}
-    />,
-    {
-      wrapper: TestProvider,
-    }
-  );
+describe('ListCard', () => {
+  it('renders', () => {
+    render(
+      <ListCard
+        id={mockPokemon.id}
+        image={mockPokemon.image}
+        name={mockPokemon.name}
+        types={mockPokemon.types}
+        isFavorite={false}
+        isFiltering={false}
+      />,
+      {
+        wrapper: TestProvider,
+      }
+    );
 
-  expect(screen.getByText('Bulbasaur')).toBeInTheDocument();
+    expect(screen.getByTestId('list-card')).toBeInTheDocument();
+    expect(screen.getByRole('link')).toBeInTheDocument();
+    expect(screen.getByTestId('pokemon-horizontal-card')).toBeInTheDocument();
+  });
 });

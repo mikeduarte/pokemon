@@ -32,6 +32,7 @@ const PokemonVerticalCard = ({
 }: PokemonCardProps) => {
   return (
     <Card
+      data-testid="pokemon-vertical-card"
       variant="outlined"
       sx={{
         width: '100%',

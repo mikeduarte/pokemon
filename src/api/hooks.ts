@@ -83,9 +83,11 @@ export const usePostPokemonFavorite = () => {
           }),
         };
 
-        queryClient.setQueryData(['pokemon'], {
-          ...updatedData,
-        });
+        if (cachedPokemonPageable) {
+          queryClient.setQueryData(['pokemon'], {
+            ...updatedData,
+          });
+        }
 
         if (cachedPokemon) {
           queryClient.setQueryData(['pokemon', variables.id], {

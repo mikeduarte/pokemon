@@ -12,7 +12,7 @@ const ListCard = forwardRef(function ListCard(
   const { id, image, isFavorite, name, types, isFiltering } = props;
 
   return (
-    <Grid component="li" item xs={12} ref={ref}>
+    <Grid component="li" item xs={12} ref={ref} data-testid="list-card">
       <Fade
         in
         timeout={{

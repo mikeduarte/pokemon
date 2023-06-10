@@ -41,7 +41,6 @@ const FavoriteButton = ({ id, isFavorite, name, parentId }: FavoriteButtonProps)
   return (
     <IconButton
       size="small"
-      disableRipple
       onClick={(event) => onFavoriteClick(event)}
       disabled={favoriteMutation.isLoading ? true : false}
       aria-label={`${isFavorite ? 'Remove' : 'Add'} ${name} ${

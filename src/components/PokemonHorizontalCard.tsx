@@ -16,6 +16,7 @@ interface PokemonCardProps {
 const PokemonHorizontalCard = ({ id, image, isFavorite, name, types }: PokemonCardProps) => {
   return (
     <Card
+      data-testid="pokemon-horizontal-card"
       variant="outlined"
       sx={{
         position: 'relative',

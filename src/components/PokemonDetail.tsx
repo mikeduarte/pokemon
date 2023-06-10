@@ -18,11 +18,13 @@ const PokemonDetail = () => {
         sx={{
           height: '100%',
           backgroundColor: 'background.paper',
+          outline: 'none',
         }}
       >
         {isLoading && <PokemonLoader />}
         {!isLoading && pokemon && (
           <Grid
+            data-testid="pokemon-detail"
             container
             height={{
               xs: '100%',
