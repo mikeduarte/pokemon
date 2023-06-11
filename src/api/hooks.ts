@@ -20,11 +20,15 @@ export const useGetPokemonPageable = ({
   isFavorite = false,
 }) => {
   const request = ({ pageParam = 0 }): Promise<PokemonPageable> => {
-    return get(
-      `${BASE_URL}pokemon/?limit=${limit}&offset=${pageParam}&type=${type}&search=${search}${
-        isFavorite ? '&isFavorite=true' : ''
-      }`
-    );
+    return get(`${BASE_URL}pokemon/`, {
+      params: {
+        limit: limit,
+        offset: pageParam,
+        type: type,
+        search: search,
+        ...(isFavorite && { isFavorite: true }),
+      },
+    });
   };
 
   return useInfiniteQuery<PokemonPageable, AxiosError>(['pokemon'], request, {

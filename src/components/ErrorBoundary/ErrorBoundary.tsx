@@ -7,7 +7,7 @@ import { Box, Typography, Link, Stack } from '@mui/material';
 
 import { ReactComponent as PokemonBall } from '../../assets/pokemon-ball.svg';
 
-type DefaultErrorFallbackProps = {
+type ErrorBoundaryProps = {
   error?: FallbackProps['error'];
   resetErrorBoundary?: FallbackProps['resetErrorBoundary'];
   is404?: boolean;
@@ -15,11 +15,7 @@ type DefaultErrorFallbackProps = {
 
 const is404Error = (error: AxiosError) => error.response?.status === 404;
 
-export const DefaultErrorFallback = ({
-  error,
-  resetErrorBoundary,
-  is404 = false,
-}: DefaultErrorFallbackProps) => {
+export const ErrorBoundary = ({ error, resetErrorBoundary, is404 = false }: ErrorBoundaryProps) => {
   const queryClient = useQueryClient();
   const display404Message = is404 || (isAxiosError(error) && is404Error(error as AxiosError));
 
@@ -30,6 +26,7 @@ export const DefaultErrorFallback = ({
 
   return (
     <Stack
+      data-testid="error-boundary"
       direction="column"
       width="100%"
       sx={{ height: 'calc(100vh - 60px)', margin: 'auto' }}
@@ -61,7 +58,7 @@ export const DefaultErrorFallback = ({
 
 export const withErrorBoundary = <P,>(
   Component: ComponentType<P>,
-  FallbackComponent = DefaultErrorFallback
+  FallbackComponent = ErrorBoundary
 ) => {
   return withErrorBoundaryWrapper(Component, {
     FallbackComponent: (fallbackProps) => <FallbackComponent {...fallbackProps} />,

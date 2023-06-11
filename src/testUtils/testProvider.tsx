@@ -16,7 +16,7 @@ const TestProvider: React.FC<Props> = ({ children }) => {
       ...QUERY_CLIENT_CONFIG.defaultOptions,
       queries: {
         ...QUERY_CLIENT_CONFIG.defaultOptions?.queries,
-        useErrorBoundary: false,
+        retry: false,
       },
     },
   });

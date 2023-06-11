@@ -40,6 +40,7 @@ const FavoriteButton = ({ id, isFavorite, name, parentId }: FavoriteButtonProps)
 
   return (
     <IconButton
+      data-testid="favorite-button"
       size="small"
       onClick={(event) => onFavoriteClick(event)}
       disabled={favoriteMutation.isLoading ? true : false}

@@ -4,6 +4,7 @@ import { Fade, Grid, Box } from '@mui/material';
 import PokemonVerticalCard from './PokemonVerticalCard';
 import PokemonLink from './common/PokemonLink';
 import { LayoutProps } from './types/LayoutProps';
+import gridCard from './styles/gridCard';
 
 const GridCard = forwardRef(function GridCard(
   props: LayoutProps,
@@ -12,29 +13,9 @@ const GridCard = forwardRef(function GridCard(
   const { id, image, isFavorite, name, types, isFiltering } = props;
 
   return (
-    <Grid
-      component="li"
-      item
-      xs={12}
-      sm={6}
-      md={4}
-      lg={3}
-      sx={{
-        aspectRatio: '1 / 1.25',
-      }}
-      ref={ref}
-    >
-      <Fade
-        in
-        timeout={{
-          enter: isFiltering ? 0 : 800,
-        }}
-      >
-        <Box
-          sx={{
-            height: '100%',
-          }}
-        >
+    <Grid data-testid="grid-card" component="li" item ref={ref} {...gridCard}>
+      <Fade in timeout={{ enter: isFiltering ? 0 : 800 }}>
+        <Box sx={{ height: '100%' }}>
           <PokemonLink id={id} name={name}>
             <PokemonVerticalCard
               id={id}

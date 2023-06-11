@@ -5,7 +5,14 @@ const ListCardPlaceholder = ({ count }: { count: number }) => (
     {Array(count)
       .fill({})
       .map((_x, idx) => (
-        <Grid item xs={12} key={`placeholder-${idx}`} aria-disabled="true" aria-label="loading">
+        <Grid
+          data-testid="list-card-placeholder"
+          item
+          key={`placeholder-${idx}`}
+          aria-disabled="true"
+          aria-label="loading"
+          xs={12}
+        >
           <Card variant="outlined">
             <Stack direction="row" spacing={2.5} alignItems="center" height="100px">
               <Skeleton animation="wave" variant="rectangular" height="100%" width="120px" />

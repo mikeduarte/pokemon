@@ -13,7 +13,11 @@ const SoundButton = ({ name, sound }: SoundButtonProps) => {
   };
 
   return (
-    <IconButton onClick={handleButtonClick} aria-label={`Listen to ${name}`}>
+    <IconButton
+      data-testid="sound-button"
+      onClick={handleButtonClick}
+      aria-label={`Listen to ${name}`}
+    >
       <VolumeMuteIcon color="info" sx={{ fontSize: '2.5rem' }} />
     </IconButton>
   );

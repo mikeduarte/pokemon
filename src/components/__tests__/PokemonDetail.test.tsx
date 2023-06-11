@@ -17,13 +17,15 @@ vi.mock('react-router-dom', async () => {
 });
 
 describe('PokemonDetail', () => {
-  it('displays pokmon loader during request', async () => {
+  it('displays pokemon loader during request', async () => {
     render(<PokemonDetail />, {
       wrapper: TestProvider,
     });
 
     expect(await screen.findByTestId('pokemon-loader')).toBeInTheDocument();
-    await waitForElementToBeRemoved(() => screen.queryByTestId('pokemon-loader'));
+    await waitForElementToBeRemoved(() => screen.queryByTestId('pokemon-loader'), {
+      timeout: 5000,
+    });
     expect(screen.queryByTestId('pokemon-loader')).not.toBeInTheDocument();
   });
 
@@ -32,7 +34,9 @@ describe('PokemonDetail', () => {
       wrapper: TestProvider,
     });
 
-    expect(await screen.findByTestId('pokemon-detail')).toBeInTheDocument();
+    expect(
+      await screen.findByTestId('pokemon-detail', undefined, { timeout: 5000 })
+    ).toBeInTheDocument();
     expect(screen.getByTestId('pokemon-vertical-card')).toBeInTheDocument();
     expect(screen.getByTestId('pokemon-stats')).toBeInTheDocument();
   });

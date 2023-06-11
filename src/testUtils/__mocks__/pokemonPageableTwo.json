@@ -1,0 +1,18 @@
+{
+    "limit": 16,
+    "offset": 16,
+    "count": 17,
+    "items": [
+        {
+            "id": "017",
+            "number": 17,
+            "name": "Pidgeotto",
+            "image": "https://img.pokemondb.net/artwork/pidgeotto.jpg",
+            "isFavorite": true,
+            "types": [
+                "Normal",
+                "Flying"
+            ]
+        }
+    ]
+}

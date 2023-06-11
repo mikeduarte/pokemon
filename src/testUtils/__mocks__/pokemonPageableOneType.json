@@ -1,0 +1,40 @@
+{
+    "limit": 16,
+    "offset": 0,
+    "count": 3,
+    "items": [
+        {
+            "id": "001",
+            "number": 1,
+            "name": "Bulbasaur",
+            "image": "https://img.pokemondb.net/artwork/bulbasaur.jpg",
+            "isFavorite": true,
+            "types": [
+                "Grass",
+                "Poison"
+            ]
+        },
+        {
+            "id": "002",
+            "number": 2,
+            "name": "Ivysaur",
+            "image": "https://img.pokemondb.net/artwork/ivysaur.jpg",
+            "isFavorite": true,
+            "types": [
+                "Grass",
+                "Poison"
+            ]
+        },
+        {
+            "id": "003",
+            "number": 3,
+            "name": "Venusaur",
+            "image": "https://img.pokemondb.net/artwork/venusaur.jpg",
+            "isFavorite": true,
+            "types": [
+                "Grass",
+                "Poison"
+            ]
+        }
+    ]
+}

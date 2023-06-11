@@ -1,5 +1,6 @@
 import { fireEvent, render, screen, waitFor } from '@testing-library/react';
 import { vi } from 'vitest';
+import * as notistack from 'notistack';
 
 import server from '../../../testUtils/msw/server';
 import { errorHandlers } from '../../../testUtils/msw/handlers';
@@ -8,7 +9,7 @@ import FavoriteButton from '../FavoriteButton';
 
 const mockEnqueueSnackbar = vi.fn();
 vi.mock('notistack', async () => {
-  const mod = (await vi.importActual('notistack')) as any;
+  const mod = (await vi.importActual('notistack')) as typeof notistack;
 
   return {
     ...mod,
@@ -29,6 +30,7 @@ const setup = () => {
 describe('FavoriteButton', () => {
   afterEach(() => {
     server.resetHandlers();
+    vi.clearAllMocks();
   });
 
   it('renders add to favorite button when not a favorite', async () => {
@@ -53,7 +55,7 @@ describe('FavoriteButton', () => {
     setup();
 
     server.use(...errorHandlers);
-    vi.spyOn(console, 'error').mockImplementationOnce(() => 'error');
+    vi.spyOn(console, 'error').mockImplementation(() => '');
 
     const button = screen.getByRole('button', { name: /add/i });
     fireEvent.click(button);

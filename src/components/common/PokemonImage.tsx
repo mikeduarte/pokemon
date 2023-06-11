@@ -10,6 +10,7 @@ type PokemonImageProps = {
 const PokemonImage = ({ image, name, sx = {} }: PokemonImageProps) => {
   return (
     <CardMedia
+      data-testid="pokemon-image"
       component="img"
       image={image}
       alt={name}

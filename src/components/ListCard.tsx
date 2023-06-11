@@ -13,12 +13,7 @@ const ListCard = forwardRef(function ListCard(
 
   return (
     <Grid component="li" item xs={12} ref={ref} data-testid="list-card">
-      <Fade
-        in
-        timeout={{
-          enter: isFiltering ? 0 : 800,
-        }}
-      >
+      <Fade in timeout={{ enter: isFiltering ? 0 : 800 }}>
         <Box>
           <PokemonLink id={id} name={name}>
             <PokemonHorizontalCard

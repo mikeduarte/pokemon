@@ -42,6 +42,7 @@ const PokemonList = ({ tabView, searchTerm, selectedType, layout }: PokemonListP
   return (
     <>
       <Grid
+        data-testid="pokemon-list"
         component="ul"
         container
         spacing={2}

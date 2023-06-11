@@ -1,0 +1,176 @@
+{
+    "limit": 16,
+    "offset": 0,
+    "count": 17,
+    "items": [
+        {
+            "id": "001",
+            "number": 1,
+            "name": "Bulbasaur",
+            "image": "https://img.pokemondb.net/artwork/bulbasaur.jpg",
+            "isFavorite": false,
+            "types": [
+                "Grass",
+                "Poison"
+            ]
+        },
+        {
+            "id": "002",
+            "number": 2,
+            "name": "Ivysaur",
+            "image": "https://img.pokemondb.net/artwork/ivysaur.jpg",
+            "isFavorite": true,
+            "types": [
+                "Grass",
+                "Poison"
+            ]
+        },
+        {
+            "id": "003",
+            "number": 3,
+            "name": "Venusaur",
+            "image": "https://img.pokemondb.net/artwork/venusaur.jpg",
+            "isFavorite": true,
+            "types": [
+                "Grass",
+                "Poison"
+            ]
+        },
+        {
+            "id": "004",
+            "number": 4,
+            "name": "Charmander",
+            "image": "https://img.pokemondb.net/artwork/charmander.jpg",
+            "isFavorite": true,
+            "types": [
+                "Fire"
+            ]
+        },
+        {
+            "id": "005",
+            "number": 5,
+            "name": "Charmeleon",
+            "image": "https://img.pokemondb.net/artwork/charmeleon.jpg",
+            "isFavorite": false,
+            "types": [
+                "Fire"
+            ]
+        },
+        {
+            "id": "006",
+            "number": 6,
+            "name": "Charizard",
+            "image": "https://img.pokemondb.net/artwork/charizard.jpg",
+            "isFavorite": false,
+            "types": [
+            "Fire",
+                "Flying"
+            ]
+        },
+        {
+            "id": "007",
+            "number": 7,
+            "name": "Squirtle",
+            "image": "https://img.pokemondb.net/artwork/squirtle.jpg",
+            "isFavorite": true,
+            "types": [
+                "Water"
+            ]
+        },
+        {
+            "id": "008",
+            "number": 8,
+            "name": "Wartortle",
+            "image": "https://img.pokemondb.net/artwork/wartortle.jpg",
+            "isFavorite": false,
+            "types": [
+                "Water"
+            ]
+        },
+        {
+            "id": "009",
+            "number": 9,
+            "name": "Blastoise",
+            "image": "https://img.pokemondb.net/artwork/blastoise.jpg",
+            "isFavorite": false,
+            "types": [
+                "Water"
+            ]
+        },
+        {
+            "id": "010",
+            "number": 10,
+            "name": "Caterpie",
+            "image": "https://img.pokemondb.net/artwork/caterpie.jpg",
+            "isFavorite": false,
+            "types": [
+                "Bug"
+            ]
+        },
+        {
+            "id": "011",
+            "number": 11,
+            "name": "Metapod",
+            "image": "https://img.pokemondb.net/artwork/metapod.jpg",
+            "isFavorite": false,
+            "types": [
+                "Bug"
+            ]
+        },
+        {
+            "id": "012",
+            "number": 12,
+            "name": "Butterfree",
+            "image": "https://img.pokemondb.net/artwork/butterfree.jpg",
+            "isFavorite": false,
+            "types": [
+            "Bug",
+                "Flying"
+            ]
+        },
+        {
+            "id": "013",
+            "number": 13,
+            "name": "Weedle",
+            "image": "https://img.pokemondb.net/artwork/weedle.jpg",
+            "isFavorite": true,
+            "types": [
+                "Bug",
+                "Poison"
+            ]
+        },
+        {
+            "id": "014",
+            "number": 14,
+            "name": "Kakuna",
+            "image": "https://img.pokemondb.net/artwork/kakuna.jpg",
+            "isFavorite": true,
+            "types": [
+                "Bug",
+                "Poison"
+            ]
+        },
+        {
+            "id": "015",
+            "number": 15,
+            "name": "Beedrill",
+            "image": "https://img.pokemondb.net/artwork/beedrill.jpg",
+            "isFavorite": true,
+            "types": [
+                "Bug",
+                "Poison"
+            ]
+        },
+        {
+            "id": "016",
+            "number": 16,
+            "name": "Pidgey",
+            "image": "https://img.pokemondb.net/artwork/pidgey.jpg",
+            "isFavorite": true,
+            "types": [
+                "Normal",
+                "Flying"
+            ]
+        }
+    ]
+}

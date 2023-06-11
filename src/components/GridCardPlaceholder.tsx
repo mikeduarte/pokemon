@@ -1,4 +1,5 @@
 import { Grid, Skeleton, Card, Stack } from '@mui/material';
+import gridCard from './styles/gridCard';
 
 const GridCardPlaceholder = ({ count }: { count: number }) => (
   <>
@@ -6,17 +7,12 @@ const GridCardPlaceholder = ({ count }: { count: number }) => (
       .fill({})
       .map((_x, idx) => (
         <Grid
-          aria-disabled="true"
-          aria-label="loading"
+          data-testid="grid-card-placeholder"
           item
           key={`placeholder-${idx}`}
-          xs={12}
-          sm={6}
-          md={4}
-          lg={3}
-          sx={{
-            aspectRatio: '1 / 1.25',
-          }}
+          aria-disabled="true"
+          aria-label="loading"
+          {...gridCard}
         >
           <Card variant="outlined" sx={{ height: '100%' }}>
             <Stack

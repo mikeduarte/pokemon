@@ -2,7 +2,7 @@ import { createBrowserRouter } from 'react-router-dom';
 
 import Home from './pages/Home';
 import PokemonDetail from './components/PokemonDetail';
-import { DefaultErrorFallback } from './components/ErrorBoundary/ErrorBoundary';
+import { ErrorBoundary } from './components/ErrorBoundary/ErrorBoundary';
 
 const router = createBrowserRouter([
   {
@@ -10,7 +10,7 @@ const router = createBrowserRouter([
     element: <Home />,
     children: [{ path: ':name/:id', element: <PokemonDetail /> }],
   },
-  { path: '*', element: <DefaultErrorFallback is404 /> },
+  { path: '*', element: <ErrorBoundary is404 /> },
 ]);
 
 export default router;
