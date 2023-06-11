@@ -1,24 +1,18 @@
+import { useContext } from 'react';
 import { useInView } from 'react-intersection-observer';
 import { Grid } from '@mui/material';
 
 import { useGetPokemonPageable } from '../api/hooks';
+import { FiltersContext } from '../contexts/FiltersContext';
 import PokemonLoader from './common/PokemonLoader';
 import GridCardPlaceholder from './GridCardPlaceholder';
 import ListCardPlaceholder from './ListCardPlaceholder';
 import GridCard from './GridCard';
 import ListCard from './ListCard';
-import { PokemonTypes } from '../types/PokemonTypes';
-import { TabViewTypes } from '../types/TabViewTypes';
-import { LayoutTypes } from '../types/LayoutTypes';
 
-type PokemonListProps = {
-  tabView: TabViewTypes;
-  searchTerm: string;
-  selectedType: PokemonTypes | '';
-  layout: LayoutTypes;
-};
-
-const PokemonList = ({ tabView, searchTerm, selectedType, layout }: PokemonListProps) => {
+const PokemonList = () => {
+  const { filters } = useContext(FiltersContext);
+  const { layout, searchTerm, selectedType, tabView } = filters;
   const isFavoriteView = tabView !== 'all';
   const isFiltering = Boolean(searchTerm) || Boolean(selectedType) || isFavoriteView;
 

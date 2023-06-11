@@ -1,22 +1,40 @@
 import { screen, render, waitForElementToBeRemoved } from '@testing-library/react';
+import { vi } from 'vitest';
 import { mockIsIntersecting } from 'react-intersection-observer/test-utils';
 
 import TestProvider from '../../testUtils/testProvider';
+import { FiltersContext } from '../../contexts/FiltersContext';
 import PokemonList from '../PokemonList';
+import { Filters } from '../types/Filters';
+
+const mockOnFilterChange = vi.fn();
+const defaultValue: Filters = {
+  layout: 'grid',
+  searchTerm: '',
+  selectedType: '',
+  tabView: 'all',
+};
+
+const setup = (value = defaultValue) => {
+  return render(
+    <FiltersContext.Provider value={{ filters: { ...value }, onFilterChange: mockOnFilterChange }}>
+      <PokemonList />
+    </FiltersContext.Provider>,
+    {
+      wrapper: TestProvider,
+    }
+  );
+};
 
 describe('PokemonList', () => {
   it('renders', () => {
-    render(<PokemonList tabView="all" layout="grid" searchTerm="" selectedType="" />, {
-      wrapper: TestProvider,
-    });
+    setup();
 
     expect(screen.getByTestId('pokemon-list')).toBeInTheDocument();
   });
 
   it('displays pokemon loader during request', async () => {
-    render(<PokemonList tabView="all" layout="grid" searchTerm="" selectedType="" />, {
-      wrapper: TestProvider,
-    });
+    setup();
 
     expect(await screen.findByTestId('pokemon-loader')).toBeInTheDocument();
     await waitForElementToBeRemoved(() => screen.queryByTestId('pokemon-loader'), {
@@ -26,9 +44,7 @@ describe('PokemonList', () => {
   });
 
   it('renders grid layout with infinite scroll', async () => {
-    render(<PokemonList tabView="all" layout="grid" searchTerm="" selectedType="" />, {
-      wrapper: TestProvider,
-    });
+    setup();
 
     const cards = await screen.findAllByTestId('grid-card', undefined, {
       timeout: 5000,
@@ -43,8 +59,9 @@ describe('PokemonList', () => {
   });
 
   it('renders list layout with infinite scroll', async () => {
-    render(<PokemonList tabView="all" layout="list" searchTerm="" selectedType="" />, {
-      wrapper: TestProvider,
+    setup({
+      ...defaultValue,
+      layout: 'list',
     });
 
     const cards = await screen.findAllByTestId('list-card', undefined, {
@@ -60,8 +77,9 @@ describe('PokemonList', () => {
   });
 
   it('renders favorite view', async () => {
-    render(<PokemonList tabView="favorites" layout="grid" searchTerm="" selectedType="" />, {
-      wrapper: TestProvider,
+    setup({
+      ...defaultValue,
+      tabView: 'favorites',
     });
 
     const cards = await screen.findAllByTestId('grid-card');
@@ -69,8 +87,9 @@ describe('PokemonList', () => {
   });
 
   it('renders list filtered by type', async () => {
-    render(<PokemonList tabView="all" layout="grid" searchTerm="" selectedType="Grass" />, {
-      wrapper: TestProvider,
+    setup({
+      ...defaultValue,
+      selectedType: 'Grass',
     });
 
     const cards = await screen.findAllByTestId('grid-card');
@@ -78,8 +97,9 @@ describe('PokemonList', () => {
   });
 
   it('renders list filtered by search term', async () => {
-    render(<PokemonList tabView="all" layout="grid" searchTerm="Bul" selectedType="" />, {
-      wrapper: TestProvider,
+    setup({
+      ...defaultValue,
+      searchTerm: 'Bul',
     });
 
     const cards = await screen.findAllByTestId('grid-card');

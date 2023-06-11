@@ -4,6 +4,7 @@ import pokemonPageableTwo from '../../__mocks__/pokemonPageableTwo.json';
 import pokemonPageableOneSearch from '../../__mocks__/pokemonPageableOneSearch.json';
 import pokemonPageableOneType from '../../__mocks__/pokemonPageableOneType.json';
 import pokemonPageableOneFavorites from '../../__mocks__/pokemonPageableOneFavorites.json';
+import pokemonTypes from '../../__mocks__/pokemonTypes.json';
 import pokemon from '../../__mocks__/pokemon.json';
 
 const handlers = [
@@ -25,6 +26,9 @@ const handlers = [
   }),
   rest.get(/\/pokemon\/[0-9]{3}/, (_req, res, ctx) => {
     return res(ctx.delay(2000), ctx.json(pokemon));
+  }),
+  rest.get(/\/pokemon-types/, (_req, res, ctx) => {
+    return res(ctx.json(pokemonTypes));
   }),
   // ----------------------------------------------------------------------
   // POST
