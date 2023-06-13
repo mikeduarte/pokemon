@@ -16,14 +16,12 @@ const PokemonList = () => {
   const isFavoriteView = tabView !== 'all';
   const isFiltering = Boolean(searchTerm) || Boolean(selectedType) || isFavoriteView;
 
-  const { data, isLoading, isFetchingNextPage, fetchNextPage, hasNextPage } = useGetPokemonPageable(
-    {
-      limit: 16,
-      type: selectedType,
-      search: searchTerm,
-      isFavorite: isFavoriteView,
-    }
-  );
+  const { data, isLoading, fetchNextPage, hasNextPage } = useGetPokemonPageable({
+    limit: 16,
+    type: selectedType,
+    search: searchTerm,
+    isFavorite: isFavoriteView,
+  });
 
   const { ref } = useInView({
     initialInView: false,
@@ -84,8 +82,7 @@ const PokemonList = () => {
               );
             });
           })}
-        {isFetchingNextPage &&
-          hasNextPage &&
+        {hasNextPage &&
           (layout === 'list' ? (
             <ListCardPlaceholder count={24} />
           ) : (

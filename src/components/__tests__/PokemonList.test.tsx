@@ -50,10 +50,11 @@ describe('PokemonList', () => {
       timeout: 5000,
     });
     expect(cards).toHaveLength(16);
+    expect(await screen.findAllByTestId('grid-card-placeholder')).toHaveLength(24);
 
     //fire observer is in view
     mockIsIntersecting(cards[11], 1);
-    expect(await screen.findAllByTestId('grid-card-placeholder')).toHaveLength(24);
+    //expect(await screen.findAllByTestId('grid-card-placeholder')).toHaveLength(24);
     expect(await screen.findByText('Pidgeotto', undefined, { timeout: 5000 })).toBeInTheDocument();
     expect(screen.getAllByTestId('grid-card')).toHaveLength(17);
   });
@@ -68,10 +69,10 @@ describe('PokemonList', () => {
       timeout: 5000,
     });
     expect(cards).toHaveLength(16);
+    expect(await screen.findAllByTestId('list-card-placeholder')).toHaveLength(24);
 
     //fire observer is in view
     mockIsIntersecting(cards[9], 1);
-    expect(await screen.findAllByTestId('list-card-placeholder')).toHaveLength(24);
     expect(await screen.findByText('Pidgeotto', undefined, { timeout: 5000 })).toBeInTheDocument();
     expect(screen.getAllByTestId('list-card')).toHaveLength(17);
   });
