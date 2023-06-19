@@ -12,6 +12,9 @@ module.exports = {
   parser: '@typescript-eslint/parser',
   parserOptions: { ecmaVersion: 'latest', sourceType: 'module' },
   plugins: ['react-refresh'],
+  globals: {
+    cy: true,
+  },
   rules: {
     'react/jsx-boolean-value': ['error', 'never'],
     'import/first': ['error', 'absolute-first'],

@@ -39,6 +39,7 @@
     "@typescript-eslint/eslint-plugin": "^5.57.1",
     "@typescript-eslint/parser": "^5.57.1",
     "@vitejs/plugin-react-swc": "^3.0.0",
+    "cypress": "^12.14.0",
     "eslint": "^8.41.0",
     "eslint-config-airbnb": "19.0.4",
     "eslint-config-airbnb-typescript": "^16.1.0",
