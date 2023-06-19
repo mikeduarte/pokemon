@@ -50,7 +50,7 @@ describe('PokemonList', () => {
       timeout: 5000,
     });
     expect(cards).toHaveLength(16);
-    expect(await screen.findAllByTestId('grid-card-placeholder')).toHaveLength(24);
+    expect(await screen.findAllByTestId('vertical-card-skeleton')).toHaveLength(24);
 
     //fire observer is in view
     mockIsIntersecting(cards[11], 1);
@@ -68,7 +68,7 @@ describe('PokemonList', () => {
       timeout: 5000,
     });
     expect(cards).toHaveLength(16);
-    expect(await screen.findAllByTestId('list-card-placeholder')).toHaveLength(24);
+    expect(await screen.findAllByTestId('horizontal-card-skeleton')).toHaveLength(24);
 
     //fire observer is in view
     mockIsIntersecting(cards[11], 1);

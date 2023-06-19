@@ -6,8 +6,7 @@ import { useGetPokemonPageable } from '../api/hooks';
 import { FiltersContext } from '../contexts/FiltersContext';
 import PokemonLoader from './common/PokemonLoader';
 import ListCard from './ListCard';
-import GridCardPlaceholder from './GridCardPlaceholder';
-import ListCardPlaceholder from './ListCardPlaceholder';
+import ListCardSkeleton from './ListCardSkeleton';
 import NoResults from './NoResults';
 
 const PokemonList = () => {
@@ -69,8 +68,7 @@ const PokemonList = () => {
               );
             });
           })}
-        {hasNextPage &&
-          (isGridView ? <GridCardPlaceholder count={24} /> : <ListCardPlaceholder count={24} />)}
+        {hasNextPage && <ListCardSkeleton isGridView={isGridView} count={24} />}
       </Grid>
       {hasNextPage && <Box ref={endObserverRef} sx={{ height: '100vh', mt: '-100vh' }}></Box>}
     </>

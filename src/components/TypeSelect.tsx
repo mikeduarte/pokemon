@@ -4,7 +4,6 @@ import { Filters } from './types/Filters';
 
 type TypeSelectProps = {
   onChange: (filter: { selectedType: Filters['selectedType'] }) => void;
-  //selectedType: Filters['selectedType'];
 };
 
 const TypeSelect = ({ onChange }: TypeSelectProps) => {

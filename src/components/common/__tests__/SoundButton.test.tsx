@@ -1,7 +1,7 @@
 import { fireEvent, render, screen, waitFor } from '@testing-library/react';
 import { vi } from 'vitest';
-import TestProvider from '../../../testUtils/testProvider';
 
+import TestProvider from '../../../testUtils/testProvider';
 import SoundButton from '../SoundButton';
 
 const mockMediaPlay = vi.fn();

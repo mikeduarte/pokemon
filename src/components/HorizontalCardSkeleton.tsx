@@ -1,16 +1,16 @@
 import { Grid, Skeleton, Card, Stack } from '@mui/material';
 
-const ListCardPlaceholder = ({ count }: { count: number }) => (
+const HorizontalCardSkeleton = ({ count }: { count: number }) => (
   <>
     {Array(count)
       .fill({})
       .map((_x, idx) => (
         <Grid
-          data-testid="list-card-placeholder"
+          data-testid="horizontal-card-skeleton"
           item
-          key={`placeholder-${idx}`}
-          aria-disabled="true"
-          aria-label="loading"
+          component="li"
+          key={`skeleton-${idx}`}
+          aria-hidden="true"
           xs={12}
         >
           <Card variant="outlined">
@@ -39,4 +39,4 @@ const ListCardPlaceholder = ({ count }: { count: number }) => (
   </>
 );
 
-export default ListCardPlaceholder;
+export default HorizontalCardSkeleton;

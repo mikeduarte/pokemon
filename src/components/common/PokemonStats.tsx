@@ -28,14 +28,8 @@ const PokemonStats = ({
       data-testid="pokemon-stats"
       width="100%"
       justifyContent="space-between"
-      direction={{
-        xs: 'column',
-        sm: 'row',
-      }}
-      sx={{
-        mt: 1,
-        backgroundColor: (theme) => theme.palette.grey[100],
-      }}
+      direction={{ xs: 'column', sm: 'row' }}
+      sx={{ mt: 1, backgroundColor: (theme) => theme.palette.grey[100] }}
     >
       <Stack
         width="100%"
@@ -62,14 +56,7 @@ const PokemonStats = ({
               {weight.minimum} - {weight.maximum}
             </Typography>
           </Stack>
-          <Divider
-            flexItem
-            light
-            variant="middle"
-            sx={{
-              my: 1,
-            }}
-          />
+          <Divider flexItem light variant="middle" sx={{ my: 1 }} />
           <Stack direction="row" justifyContent="space-between">
             <Typography variant="caption" fontWeight="bold">
               Height
@@ -86,9 +73,7 @@ const PokemonStats = ({
             avatar={<Avatar sx={{ color: 'white !important' }}>CP</Avatar>}
             label={maxCP}
             color="primary"
-            sx={{
-              background: 'white',
-            }}
+            sx={{ background: 'white' }}
           />
           <Chip
             size="small"
@@ -96,9 +81,7 @@ const PokemonStats = ({
             avatar={<Avatar sx={{ color: 'white !important' }}>HP</Avatar>}
             label={maxHP}
             color="secondary"
-            sx={{
-              background: 'white',
-            }}
+            sx={{ background: 'white' }}
           />
         </Stack>
       </Stack>
@@ -140,11 +123,7 @@ const PokemonStats = ({
                   <Avatar
                     alt={evolution.name}
                     src={evolution.image}
-                    sx={{
-                      width: 80,
-                      height: 80,
-                      backgroundColor: 'white',
-                    }}
+                    sx={{ width: 80, height: 80, backgroundColor: 'white' }}
                     imgProps={{
                       sx: {
                         objectFit: 'contain',

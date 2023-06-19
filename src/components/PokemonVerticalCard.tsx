@@ -7,7 +7,7 @@ import SoundButton from './common/SoundButton';
 import PokemonCardTitle from './common/PokemonCardTitle';
 import { Pokemon } from '../types/Pokemon';
 
-interface PokemonCardProps {
+type PokemonCardProps = {
   disableBorder?: boolean;
   disableHover?: boolean;
   children?: ReactNode;
@@ -17,7 +17,7 @@ interface PokemonCardProps {
   name: Pokemon['name'];
   types: Pokemon['types'];
   sound?: Pokemon['sound'];
-}
+};
 
 const PokemonVerticalCard = ({
   id,

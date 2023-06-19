@@ -1,18 +1,18 @@
 import { Grid, Skeleton, Card, Stack } from '@mui/material';
-import gridCard from './styles/gridCard';
+import verticalCardStyles from './styles/verticalCard';
 
-const GridCardPlaceholder = ({ count }: { count: number }) => (
+const VerticalCardSkeleton = ({ count }: { count: number }) => (
   <>
     {Array(count)
       .fill({})
       .map((_x, idx) => (
         <Grid
-          data-testid="grid-card-placeholder"
+          data-testid="vertical-card-skeleton"
           item
-          key={`placeholder-${idx}`}
-          aria-disabled="true"
-          aria-label="loading"
-          {...gridCard}
+          component="li"
+          key={`skeleton-${idx}`}
+          aria-hidden="true"
+          {...verticalCardStyles}
         >
           <Card variant="outlined" sx={{ height: '100%' }}>
             <Stack
@@ -52,4 +52,4 @@ const GridCardPlaceholder = ({ count }: { count: number }) => (
   </>
 );
 
-export default GridCardPlaceholder;
+export default VerticalCardSkeleton;

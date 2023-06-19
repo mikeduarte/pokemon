@@ -1,4 +1,4 @@
-const gridCard = {
+const verticalCard = {
   xs: 12,
   sm: 6,
   md: 4,
@@ -8,4 +8,4 @@ const gridCard = {
   },
 };
 
-export default gridCard;
+export default verticalCard;

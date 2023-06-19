@@ -26,10 +26,7 @@ const PokemonDetail = () => {
           <Grid
             data-testid="pokemon-detail"
             container
-            height={{
-              xs: '100%',
-              sm: '80vh',
-            }}
+            height={{ xs: '100%', sm: '80vh' }}
             width="100vw"
             maxWidth="sm"
             m="auto"

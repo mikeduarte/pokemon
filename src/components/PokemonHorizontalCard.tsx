@@ -5,13 +5,13 @@ import PokemonImage from './common/PokemonImage';
 import PokemonCardTitle from './common/PokemonCardTitle';
 import { Pokemon } from '../types/Pokemon';
 
-interface PokemonCardProps {
+type PokemonCardProps = {
   id: Pokemon['id'];
   image: Pokemon['image'];
   isFavorite: Pokemon['isFavorite'];
   name: Pokemon['name'];
   types: Pokemon['types'];
-}
+};
 
 const PokemonHorizontalCard = ({ id, image, isFavorite, name, types }: PokemonCardProps) => {
   return (
