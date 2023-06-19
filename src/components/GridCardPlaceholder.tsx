@@ -27,7 +27,7 @@ const GridCardPlaceholder = ({ count }: { count: number }) => (
               <Skeleton
                 animation="wave"
                 variant="rectangular"
-                height="calc(100% - 64px)"
+                height="100%"
                 width="100%"
                 sx={{ borderRadius: 1, mb: 2 }}
               />

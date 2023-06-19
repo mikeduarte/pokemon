@@ -1,5 +1,5 @@
 import { createElement, forwardRef, useMemo } from 'react';
-import { Fade, Grid, Box } from '@mui/material';
+import { Grid, Box } from '@mui/material';
 
 import PokemonVerticalCard from './PokemonVerticalCard';
 import PokemonHorizontalCard from './PokemonHorizontalCard';
@@ -14,14 +14,13 @@ interface ListCardProps {
   isGridView: boolean;
   name: Pokemon['name'];
   types: Pokemon['types'];
-  isFiltering: boolean;
 }
 
 const ListCard = forwardRef(function GridCard(
   props: ListCardProps,
   ref: React.ForwardedRef<HTMLLIElement>
 ) {
-  const { id, image, isFavorite, isGridView, name, types, isFiltering } = props;
+  const { id, image, isFavorite, isGridView, name, types } = props;
 
   const layoutStyles = useMemo(
     () => ({
@@ -33,19 +32,17 @@ const ListCard = forwardRef(function GridCard(
 
   return (
     <Grid data-testid="list-card" component="li" item ref={ref} {...layoutStyles}>
-      <Fade in timeout={{ enter: isFiltering ? 0 : 800 }}>
-        <Box sx={{ height: isGridView ? '100%' : 'auto' }}>
-          <PokemonLink id={id} name={name}>
-            {createElement(isGridView ? PokemonVerticalCard : PokemonHorizontalCard, {
-              id,
-              image,
-              isFavorite,
-              name,
-              types,
-            })}
-          </PokemonLink>
-        </Box>
-      </Fade>
+      <Box sx={{ height: isGridView ? '100%' : 'auto' }}>
+        <PokemonLink id={id} name={name}>
+          {createElement(isGridView ? PokemonVerticalCard : PokemonHorizontalCard, {
+            id,
+            image,
+            isFavorite,
+            name,
+            types,
+          })}
+        </PokemonLink>
+      </Box>
     </Grid>
   );
 });

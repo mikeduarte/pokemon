@@ -1,6 +1,6 @@
-import { useContext } from 'react';
+import { useContext, useMemo } from 'react';
 import { useInView } from 'react-intersection-observer';
-import { Grid } from '@mui/material';
+import { Box, Grid } from '@mui/material';
 
 import { useGetPokemonPageable } from '../api/hooks';
 import { FiltersContext } from '../contexts/FiltersContext';
@@ -15,7 +15,6 @@ const PokemonList = () => {
   const { layout, searchTerm, selectedType, tabView } = filters;
   const isGridView = layout === 'grid';
   const isFavoriteView = tabView !== 'all';
-  const isFiltering = Boolean(searchTerm) || Boolean(selectedType) || isFavoriteView;
 
   const { data, isLoading, fetchNextPage, hasNextPage } = useGetPokemonPageable({
     limit: 16,
@@ -24,13 +23,19 @@ const PokemonList = () => {
     isFavorite: isFavoriteView,
   });
 
-  const { ref } = useInView({
-    initialInView: false,
-    delay: 100,
-    onChange: (inview) => {
-      if (inview) fetchNextPage();
-    },
-  });
+  const inViewOptions = useMemo(
+    () => ({
+      initialInView: false,
+      delay: 100,
+      onChange: (inview: boolean) => {
+        if (inview) fetchNextPage();
+      },
+    }),
+    [fetchNextPage]
+  );
+
+  const [observerRef] = useInView(inViewOptions);
+  const [endObserverRef] = useInView(inViewOptions);
 
   return (
     <>
@@ -58,9 +63,8 @@ const PokemonList = () => {
                   isGridView={isGridView}
                   name={pokemon.name}
                   types={pokemon.types}
-                  isFiltering={isFiltering}
                   key={pokemon.id}
-                  ref={index === page.items.length - 5 ? ref : undefined}
+                  ref={index === page.items.length - 5 ? observerRef : undefined}
                 />
               );
             });
@@ -68,6 +72,7 @@ const PokemonList = () => {
         {hasNextPage &&
           (isGridView ? <GridCardPlaceholder count={24} /> : <ListCardPlaceholder count={24} />)}
       </Grid>
+      {hasNextPage && <Box ref={endObserverRef} sx={{ height: '100vh', mt: '-100vh' }}></Box>}
     </>
   );
 };

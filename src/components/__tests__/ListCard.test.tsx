@@ -5,7 +5,7 @@ import ListCard from '../ListCard';
 
 describe('ListCard', () => {
   it('renders vertical card when is grid view', () => {
-    render(<ListCard id="" image="" name="" types={[]} isFavorite isFiltering isGridView />, {
+    render(<ListCard id="" image="" name="" types={[]} isFavorite isGridView />, {
       wrapper: TestProvider,
     });
 
@@ -15,12 +15,9 @@ describe('ListCard', () => {
   });
 
   it('renders horizontal card when is list view', () => {
-    render(
-      <ListCard id="" image="" name="" types={[]} isFavorite isFiltering isGridView={false} />,
-      {
-        wrapper: TestProvider,
-      }
-    );
+    render(<ListCard id="" image="" name="" types={[]} isFavorite isGridView={false} />, {
+      wrapper: TestProvider,
+    });
 
     expect(screen.getByTestId('pokemon-horizontal-card')).toBeInTheDocument();
   });
