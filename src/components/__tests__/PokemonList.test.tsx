@@ -46,7 +46,7 @@ describe('PokemonList', () => {
   it('renders grid layout with infinite scroll', async () => {
     setup();
 
-    const cards = await screen.findAllByTestId('grid-card', undefined, {
+    const cards = await screen.findAllByTestId('list-card', undefined, {
       timeout: 5000,
     });
     expect(cards).toHaveLength(16);
@@ -54,9 +54,8 @@ describe('PokemonList', () => {
 
     //fire observer is in view
     mockIsIntersecting(cards[11], 1);
-    //expect(await screen.findAllByTestId('grid-card-placeholder')).toHaveLength(24);
     expect(await screen.findByText('Pidgeotto', undefined, { timeout: 5000 })).toBeInTheDocument();
-    expect(screen.getAllByTestId('grid-card')).toHaveLength(17);
+    expect(screen.getAllByTestId('list-card')).toHaveLength(17);
   });
 
   it('renders list layout with infinite scroll', async () => {
@@ -72,7 +71,7 @@ describe('PokemonList', () => {
     expect(await screen.findAllByTestId('list-card-placeholder')).toHaveLength(24);
 
     //fire observer is in view
-    mockIsIntersecting(cards[9], 1);
+    mockIsIntersecting(cards[11], 1);
     expect(await screen.findByText('Pidgeotto', undefined, { timeout: 5000 })).toBeInTheDocument();
     expect(screen.getAllByTestId('list-card')).toHaveLength(17);
   });
@@ -83,7 +82,7 @@ describe('PokemonList', () => {
       tabView: 'favorites',
     });
 
-    const cards = await screen.findAllByTestId('grid-card');
+    const cards = await screen.findAllByTestId('list-card');
     expect(cards).toHaveLength(4);
   });
 
@@ -93,7 +92,7 @@ describe('PokemonList', () => {
       selectedType: 'Grass',
     });
 
-    const cards = await screen.findAllByTestId('grid-card');
+    const cards = await screen.findAllByTestId('list-card');
     expect(cards).toHaveLength(3);
   });
 
@@ -103,7 +102,17 @@ describe('PokemonList', () => {
       searchTerm: 'Bul',
     });
 
-    const cards = await screen.findAllByTestId('grid-card');
+    const cards = await screen.findAllByTestId('list-card');
     expect(cards).toHaveLength(1);
+  });
+
+  it('renders no results component when there are no results', async () => {
+    setup({
+      ...defaultValue,
+      searchTerm: 'no results',
+    });
+
+    const noResults = await screen.findByTestId('no-results');
+    expect(noResults).toBeInTheDocument();
   });
 });

@@ -5,7 +5,7 @@ import { AxiosError, isAxiosError } from 'axios';
 import { FallbackProps, withErrorBoundary as withErrorBoundaryWrapper } from 'react-error-boundary';
 import { Box, Typography, Link, Stack } from '@mui/material';
 
-import { ReactComponent as PokemonBall } from '../../assets/pokemon-ball.svg';
+import PokemonBall from '../common/PokemonBall';
 
 type ErrorBoundaryProps = {
   error?: FallbackProps['error'];

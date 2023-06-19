@@ -1,28 +1,48 @@
-import { forwardRef } from 'react';
+import { createElement, forwardRef, useMemo } from 'react';
 import { Fade, Grid, Box } from '@mui/material';
 
-import PokemonLink from './common/PokemonLink';
+import PokemonVerticalCard from './PokemonVerticalCard';
 import PokemonHorizontalCard from './PokemonHorizontalCard';
-import { LayoutProps } from './types/LayoutProps';
+import PokemonLink from './common/PokemonLink';
+import gridCardStyles from './styles/gridCard';
+import { Pokemon } from '../types/Pokemon';
 
-const ListCard = forwardRef(function ListCard(
-  props: LayoutProps,
+interface ListCardProps {
+  id: Pokemon['id'];
+  image: Pokemon['image'];
+  isFavorite: Pokemon['isFavorite'];
+  isGridView: boolean;
+  name: Pokemon['name'];
+  types: Pokemon['types'];
+  isFiltering: boolean;
+}
+
+const ListCard = forwardRef(function GridCard(
+  props: ListCardProps,
   ref: React.ForwardedRef<HTMLLIElement>
 ) {
-  const { id, image, isFavorite, name, types, isFiltering } = props;
+  const { id, image, isFavorite, isGridView, name, types, isFiltering } = props;
+
+  const layoutStyles = useMemo(
+    () => ({
+      xs: 12,
+      ...(isGridView && { ...gridCardStyles }),
+    }),
+    [isGridView]
+  );
 
   return (
-    <Grid component="li" item xs={12} ref={ref} data-testid="list-card">
+    <Grid data-testid="list-card" component="li" item ref={ref} {...layoutStyles}>
       <Fade in timeout={{ enter: isFiltering ? 0 : 800 }}>
-        <Box>
+        <Box sx={{ height: isGridView ? '100%' : 'auto' }}>
           <PokemonLink id={id} name={name}>
-            <PokemonHorizontalCard
-              id={id}
-              image={image}
-              isFavorite={isFavorite}
-              name={name}
-              types={types}
-            />
+            {createElement(isGridView ? PokemonVerticalCard : PokemonHorizontalCard, {
+              id,
+              image,
+              isFavorite,
+              name,
+              types,
+            })}
           </PokemonLink>
         </Box>
       </Fade>

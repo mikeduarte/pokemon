@@ -4,6 +4,7 @@ import pokemonPageableTwo from '../../__mocks__/pokemonPageableTwo.json';
 import pokemonPageableOneSearch from '../../__mocks__/pokemonPageableOneSearch.json';
 import pokemonPageableOneType from '../../__mocks__/pokemonPageableOneType.json';
 import pokemonPageableOneFavorites from '../../__mocks__/pokemonPageableOneFavorites.json';
+import pokemonPageableNoResults from '../../__mocks__/pokemonPageableNoResults.json';
 import pokemonTypes from '../../__mocks__/pokemonTypes.json';
 import pokemon from '../../__mocks__/pokemon.json';
 
@@ -18,6 +19,7 @@ const handlers = [
     const search = req.url.searchParams.getAll('search')?.[0];
 
     if (search === 'Bul') return res(ctx.json(pokemonPageableOneSearch));
+    if (search === 'no results') return res(ctx.json(pokemonPageableNoResults));
     if (type === 'Grass') return res(ctx.json(pokemonPageableOneType));
     if (isFavorite === 'true') return res(ctx.json(pokemonPageableOneFavorites));
     if (offset === '0') return res(ctx.delay(2000), ctx.json(pokemonPageableOne));

@@ -5,14 +5,15 @@ import { Grid } from '@mui/material';
 import { useGetPokemonPageable } from '../api/hooks';
 import { FiltersContext } from '../contexts/FiltersContext';
 import PokemonLoader from './common/PokemonLoader';
+import ListCard from './ListCard';
 import GridCardPlaceholder from './GridCardPlaceholder';
 import ListCardPlaceholder from './ListCardPlaceholder';
-import GridCard from './GridCard';
-import ListCard from './ListCard';
+import NoResults from './NoResults';
 
 const PokemonList = () => {
   const { filters } = useContext(FiltersContext);
   const { layout, searchTerm, selectedType, tabView } = filters;
+  const isGridView = layout === 'grid';
   const isFavoriteView = tabView !== 'all';
   const isFiltering = Boolean(searchTerm) || Boolean(selectedType) || isFavoriteView;
 
@@ -33,61 +34,39 @@ const PokemonList = () => {
 
   return (
     <>
+      {isLoading && <PokemonLoader />}
+      {!isLoading && !data?.pages?.[0]?.items.length && <NoResults />}
       <Grid
         data-testid="pokemon-list"
         component="ul"
         container
         spacing={2}
-        p={{
-          xs: 2,
-          md: 4,
-        }}
-        sx={{
-          listStyle: 'none',
-        }}
+        p={{ xs: 2, md: 4 }}
+        sx={{ listStyle: 'none' }}
       >
-        {isLoading && <PokemonLoader />}
         {!isLoading &&
           data?.pages &&
           data?.pages?.map((page) => {
             return page.items?.map((pokemon, index) => {
               if (isFavoriteView && !pokemon.isFavorite) return null;
 
-              if (layout === 'grid') {
-                return (
-                  <GridCard
-                    id={pokemon.id}
-                    image={pokemon.image}
-                    isFavorite={pokemon.isFavorite}
-                    name={pokemon.name}
-                    types={pokemon.types}
-                    isFiltering={isFiltering}
-                    key={pokemon.id}
-                    ref={index === page.items.length - 5 ? ref : undefined}
-                  />
-                );
-              }
-
               return (
                 <ListCard
                   id={pokemon.id}
                   image={pokemon.image}
                   isFavorite={pokemon.isFavorite}
+                  isGridView={isGridView}
                   name={pokemon.name}
                   types={pokemon.types}
                   isFiltering={isFiltering}
                   key={pokemon.id}
-                  ref={index === page.items.length - 7 ? ref : undefined}
+                  ref={index === page.items.length - 5 ? ref : undefined}
                 />
               );
             });
           })}
         {hasNextPage &&
-          (layout === 'list' ? (
-            <ListCardPlaceholder count={24} />
-          ) : (
-            <GridCardPlaceholder count={24} />
-          ))}
+          (isGridView ? <GridCardPlaceholder count={24} /> : <ListCardPlaceholder count={24} />)}
       </Grid>
     </>
   );

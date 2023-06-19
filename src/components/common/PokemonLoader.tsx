@@ -1,5 +1,6 @@
 import { Backdrop, Box, styled, keyframes } from '@mui/material';
-import { ReactComponent as PokemonBall } from '../../assets/pokemon-ball.svg';
+
+import PokemonBall from './PokemonBall';
 
 const animation = keyframes`
   from {

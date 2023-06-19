@@ -17,8 +17,6 @@ const GridCardPlaceholder = ({ count }: { count: number }) => (
           <Card variant="outlined" sx={{ height: '100%' }}>
             <Stack
               spacing={1}
-              alignContent="center"
-              alignItems="center"
               sx={{
                 display: 'flex',
                 flexDirection: 'column',
