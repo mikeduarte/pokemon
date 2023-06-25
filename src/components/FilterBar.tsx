@@ -12,6 +12,7 @@ const FilterBar = () => {
 
   return (
     <Paper
+      data-testid="filter-bar"
       square
       elevation={0}
       sx={{
