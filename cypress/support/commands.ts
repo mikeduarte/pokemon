@@ -38,3 +38,12 @@
 Cypress.Commands.add('getByTestId', (selector, ...args) => {
   return cy.get(`[data-testid=${selector}]`, ...args);
 });
+
+Cypress.Commands.add('selectOption', { prevSubject: true }, (subject, value) => {
+  cy.wrap(subject).click().focus().clear().type(value).type('{downArrow}').type('{enter}');
+});
+
+Cypress.Commands.add('waitForLoader', () => {
+  cy.getByTestId('pokemon-loader').should('exist');
+  cy.getByTestId('pokemon-loader').should('not.exist', { timeout: 4000 });
+});
