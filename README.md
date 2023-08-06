@@ -22,10 +22,10 @@ The following npm scripts are available for the project:
 - `build`: Builds the production-ready application.
 - `serve`: Serves the production build locally.
 - `lint`: Runs ESLint to check for code style and errors.
-- `preview`: Roots up a local static web server that serves the files from dist.
+- `preview`: Boots up a local static web server that serves the files from dist.
 - `test`: Runs the unit tests using Vitest.
 - `test:e2e`: Runs end-to-end tests in headless using Cypress (Please be sure that you run dev command first).
-- `cypress`: Opens Cypress (Use this to rune the end-to-end test manually in a browser).
+- `cypress`: Opens Cypress (Use this to run the end-to-end tests manually in a browser).
 
 ## Code Formatting and Linting
 
@@ -47,7 +47,7 @@ Material-UI v5 was used since it offers out-of-the-box accessibility and respons
 
 ### Mocking API Requests with MSW
 
-This project uses MSW (Mock Service Worker) to mock API requests during unit testing, The mock handlers are defined in the `src/TestUtils/__mocks__` directory. The decision to use this was based off the fact that the project is heavily API driven.
+This project uses MSW (Mock Service Worker) to mock API requests during unit testing. The mock handlers are defined in the `src/testUtils/__mocks__` directory. The decision to use this was based off the fact that the project is heavily API driven.
 
 ### Vite
 
