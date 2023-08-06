@@ -24,7 +24,7 @@ The following npm scripts are available for the project:
 - `lint`: Runs ESLint to check for code style and errors.
 - `preview`: Boots up a local static web server that serves the files from dist.
 - `test`: Runs the unit tests using Vitest.
-- `test:e2e`: Runs end-to-end tests in headless using Cypress (Please be sure that you run dev command first).
+- `test:e2e`: Runs end-to-end tests in headless using Cypress (Please be sure that you run dev command first to start dev server).
 - `cypress`: Opens Cypress (Use this to run the end-to-end tests manually in a browser).
 
 ## Code Formatting and Linting
