@@ -1,7 +1,7 @@
 import { ToggleButton, ToggleButtonGroup } from '@mui/material';
 import ViewListIcon from '@mui/icons-material/ViewList';
 import ViewModuleIcon from '@mui/icons-material/ViewModule';
-import { Filters } from './types/Filters';
+import { Filters } from '../types/Filters';
 
 type LayoutViewButtonsProps = {
   onChange: (filter: { layout: Filters['layout'] }) => void;

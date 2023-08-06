@@ -3,7 +3,7 @@ import { vi } from 'vitest';
 
 import TestProvider from '../../testUtils/testProvider';
 import { FiltersContext } from '../../contexts/FiltersContext';
-import { Filters } from '../types/Filters';
+import { Filters } from '../../types/Filters';
 import FilterBar from '../FilterBar';
 
 const mockOnFilterChange = vi.fn();

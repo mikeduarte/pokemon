@@ -11,7 +11,8 @@
     "preview": "vite preview",
     "prepare": "husky install",
     "test": "vitest",
-    "cypress": "npx cypress run"
+    "test:e2e": "npx cypress run",
+    "cypress": "npx cypress open"
   },
   "dependencies": {
     "@emotion/react": "^11.11.0",

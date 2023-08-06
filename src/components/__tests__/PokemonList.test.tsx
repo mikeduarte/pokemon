@@ -5,7 +5,7 @@ import { mockIsIntersecting } from 'react-intersection-observer/test-utils';
 import TestProvider from '../../testUtils/testProvider';
 import { FiltersContext } from '../../contexts/FiltersContext';
 import PokemonList from '../PokemonList';
-import { Filters } from '../types/Filters';
+import { Filters } from '../../types/Filters';
 
 const mockOnFilterChange = vi.fn();
 const defaultValue: Filters = {

@@ -97,7 +97,7 @@ describe('Pokemon Home Page', () => {
     cy.contains('Ivysaur').should('not.exist');
   });
 
-  it('navigations to pokemon details page on pokemon card click', () => {
+  it('navigates to pokemon details page on pokemon card click', () => {
     INTERCEPT.getPokemon.intercept((req) => {
       req.on('response', (res) => {
         res.setDelay(1000);
@@ -110,7 +110,7 @@ describe('Pokemon Home Page', () => {
     cy.contains('Bulbasaur');
   });
 
-  it('navigations back to home page on browser back button', () => {
+  it('navigates back to home page on browser back button', () => {
     INTERCEPT.getPokemon.intercept();
     cy.contains('Bulbasaur').click();
     cy.wait(INTERCEPT.getPokemon.alias);

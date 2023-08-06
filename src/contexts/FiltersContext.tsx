@@ -1,6 +1,6 @@
 import { createContext, useState } from 'react';
 import { useQueryClient } from '@tanstack/react-query';
-import { Filters } from '../components/types/Filters';
+import { Filters } from '../types/Filters';
 
 const defaultFilters: Filters = {
   layout: 'grid',

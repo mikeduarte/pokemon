@@ -1,5 +1,5 @@
 import { ToggleButton, ToggleButtonGroup } from '@mui/material';
-import { Filters } from './types/Filters';
+import { Filters } from '../types/Filters';
 
 type TabViewButtonsProps = {
   tabView: Filters['tabView'];

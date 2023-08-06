@@ -1,7 +1,7 @@
 import { DebounceInput } from 'react-debounce-input';
 import { InputAdornment, TextField, TextFieldProps } from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
-import { Filters } from './types/Filters';
+import { Filters } from '../types/Filters';
 
 type SearchTextFieldProps = {
   debounceTimeout?: number;

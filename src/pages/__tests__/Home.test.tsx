@@ -1,7 +1,7 @@
 import { screen, render } from '@testing-library/react';
 
-import TestProvider from '../testUtils/testProvider';
-import Home from './Home';
+import TestProvider from '../../testUtils/testProvider';
+import Home from '../Home';
 
 const setup = () => {
   return render(<Home />, {

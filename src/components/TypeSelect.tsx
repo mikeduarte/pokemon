@@ -1,6 +1,6 @@
 import { Autocomplete, TextField } from '@mui/material';
 import { useGetPokemonTypes } from '../api/hooks';
-import { Filters } from './types/Filters';
+import { Filters } from '../types/Filters';
 
 type TypeSelectProps = {
   onChange: (filter: { selectedType: Filters['selectedType'] }) => void;
