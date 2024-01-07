@@ -1,18 +1,32 @@
+import { Pageable } from './Pageable';
+
 export type PokemonTypes =
-  | 'Grass'
-  | 'Poison'
-  | 'Fire'
-  | 'Flying'
-  | 'Water'
-  | 'Bug'
-  | 'Normal'
-  | 'Electric'
-  | 'Ground'
-  | 'Fairy'
-  | 'Fighting'
-  | 'Psychic'
-  | 'Rock'
-  | 'Steel'
-  | 'Ice'
-  | 'Ghost'
-  | 'Dragon';
+  | 'grass'
+  | 'poison'
+  | 'fire'
+  | 'flying'
+  | 'water'
+  | 'bug'
+  | 'normal'
+  | 'electric'
+  | 'ground'
+  | 'fairy'
+  | 'fighting'
+  | 'psychic'
+  | 'rock'
+  | 'steel'
+  | 'ice'
+  | 'ghost'
+  | 'dragon'
+  | 'dark'
+  | 'shadow'
+  | 'unknown';
+
+interface PokemonTypesDto {
+  name: PokemonTypes;
+  url: string;
+}
+
+export interface PokemonTypesPageable extends Pageable {
+  results: PokemonTypesDto[];
+}

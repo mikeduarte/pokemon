@@ -9,10 +9,10 @@ type TypeSelectProps = {
 const TypeSelect = ({ onChange }: TypeSelectProps) => {
   const { data, isLoading, isError } = useGetPokemonTypes();
 
-  const pokemonTypes = data?.map((type) => {
+  const pokemonTypes = data?.results?.map((type) => {
     return {
-      value: type,
-      label: type,
+      value: type.name,
+      label: type.name,
     };
   });
 

@@ -4,6 +4,7 @@ import { PokemonTypes } from './PokemonTypes';
 export interface PokemonPreview {
   id: string;
   image: string;
+  artwork: string;
   isFavorite: boolean;
   name: string;
   number: number;

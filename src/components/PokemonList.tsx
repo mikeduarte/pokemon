@@ -39,7 +39,7 @@ const PokemonList = () => {
   return (
     <>
       {isLoading && <PokemonLoader />}
-      {!isLoading && !data?.pages?.[0]?.items.length && <NoResults />}
+      {!isLoading && !data?.pages?.[0]?.data?.pokemons?.results?.length && <NoResults />}
       <Grid
         data-testid="pokemon-list"
         component="ul"
@@ -51,19 +51,19 @@ const PokemonList = () => {
         {!isLoading &&
           data?.pages &&
           data?.pages?.map((page) => {
-            return page.items?.map((pokemon, index) => {
+            return page.data.pokemons.results.map((pokemon, index) => {
               if (isFavoriteView && !pokemon.isFavorite) return null;
 
               return (
                 <ListCard
                   id={pokemon.id}
-                  image={pokemon.image}
+                  image={pokemon.artwork}
                   isFavorite={pokemon.isFavorite}
                   isGridView={isGridView}
                   name={pokemon.name}
                   types={pokemon.types}
                   key={pokemon.id}
-                  ref={index === page.items.length - 5 ? observerRef : undefined}
+                  ref={index === page.data.pokemons.results.length - 5 ? observerRef : undefined}
                 />
               );
             });

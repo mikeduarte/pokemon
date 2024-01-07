@@ -5,6 +5,18 @@ const theme = createTheme({
   palette: {
     ...palette,
   },
+  components: {
+    MuiAutocomplete: {
+      styleOverrides: {
+        input: {
+          textTransform: 'capitalize',
+        },
+        option: {
+          textTransform: 'capitalize',
+        },
+      },
+    },
+  },
 });
 
 export default theme;

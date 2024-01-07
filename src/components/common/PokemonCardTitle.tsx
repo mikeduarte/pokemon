@@ -9,11 +9,11 @@ type PokemonCardTitleProps = {
 const PokemonCardTitle = ({ name, types }: PokemonCardTitleProps) => {
   return (
     <>
-      <Typography component="h2" variant="h6">
+      <Typography component="h2" variant="h6" sx={{ textTransform: 'capitalize' }}>
         {name}
       </Typography>
       <Typography variant="body2" color="text.secondary">
-        {types.join(', ')}
+        {types?.join(', ')}
       </Typography>
     </>
   );
