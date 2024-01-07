@@ -22,11 +22,11 @@ export type PokemonTypes =
   | 'shadow'
   | 'unknown';
 
-interface PokemonTypesDto {
+export interface PokemonType {
   name: PokemonTypes;
   url: string;
 }
 
 export interface PokemonTypesPageable extends Pageable {
-  results: PokemonTypesDto[];
+  results: PokemonType[];
 }

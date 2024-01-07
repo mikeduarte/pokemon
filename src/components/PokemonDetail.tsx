@@ -33,20 +33,19 @@ const PokemonDetail = () => {
           >
             <PokemonVerticalCard
               id={pokemon.id}
-              image={pokemon.image}
+              image={pokemon.sprites?.other?.['official-artwork'].front_default}
               isFavorite={pokemon.isFavorite}
               name={pokemon.name}
               types={pokemon.types}
-              sound={pokemon.sound}
               disableBorder={isMobileBreakpoint}
               disableHover
             >
               <PokemonStats
-                evolutions={pokemon.evolutions}
+                name={pokemon.name}
+                sprites={pokemon.sprites}
                 height={pokemon.height}
                 weight={pokemon.weight}
-                maxCP={pokemon.maxCP}
-                maxHP={pokemon.maxHP}
+                stats={pokemon.stats}
                 parentId={pokemon.id}
               />
             </PokemonVerticalCard>

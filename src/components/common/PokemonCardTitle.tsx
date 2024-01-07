@@ -3,17 +3,19 @@ import { Pokemon } from '../../types/Pokemon';
 
 type PokemonCardTitleProps = {
   name: Pokemon['name'];
-  types: Pokemon['types'];
+  types?: Pokemon['types'];
 };
 
 const PokemonCardTitle = ({ name, types }: PokemonCardTitleProps) => {
+  console.log(types);
+
   return (
     <>
       <Typography component="h2" variant="h6" sx={{ textTransform: 'capitalize' }}>
         {name}
       </Typography>
-      <Typography variant="body2" color="text.secondary">
-        {types?.join(', ')}
+      <Typography variant="body2" color="text.secondary" sx={{ textTransform: 'capitalize' }}>
+        {types?.map((type) => type.type.name).join(', ')}
       </Typography>
     </>
   );

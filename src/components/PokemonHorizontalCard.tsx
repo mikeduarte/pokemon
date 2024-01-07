@@ -10,7 +10,7 @@ type PokemonCardProps = {
   image: Pokemon['image'];
   isFavorite: Pokemon['isFavorite'];
   name: Pokemon['name'];
-  types: Pokemon['types'];
+  types?: Pokemon['types'];
 };
 
 const PokemonHorizontalCard = ({ id, image, isFavorite, name, types }: PokemonCardProps) => {

@@ -12,7 +12,8 @@ import { PokemonPageable } from '../types/PokemonPageable';
 import { PokemonTypesPageable } from '../types/PokemonTypes';
 
 const TOTAL_LIMIT = 300;
-const BASE_URL = 'https://graphql-pokeapi.graphcdn.app/';
+const GRAPH_QL_BASE_URL = 'https://graphql-pokeapi.graphcdn.app/';
+const BASE_URL = 'https://pokeapi.co/api/v2/';
 
 const gqlQuery = `query pokemons($limit: Int, $offset: Int) {
   pokemons(limit: $limit, offset: $offset) {
@@ -22,7 +23,7 @@ const gqlQuery = `query pokemons($limit: Int, $offset: Int) {
     status
     message
     results {
-      url
+      id
       name
       artwork
     }
@@ -36,7 +37,7 @@ export const useGetPokemonPageable = ({
   // isFavorite = false,
 }) => {
   const request = ({ pageParam = 0 }): Promise<PokemonPageable> => {
-    return post(`${BASE_URL}`, {
+    return post(`${GRAPH_QL_BASE_URL}`, {
       query: gqlQuery,
       variables: {
         limit: limit,
@@ -136,7 +137,7 @@ export const usePostPokemonFavorite = () => {
 };
 
 export const useGetPokemonTypes = () => {
-  const request = (): Promise<PokemonTypesPageable> => get('https://pokeapi.co/api/v2/type/');
+  const request = (): Promise<PokemonTypesPageable> => get(`${BASE_URL}type/`);
 
   return useQuery<PokemonTypesPageable, AxiosError>(['pokemon', 'types'], request, {
     cacheTime: Infinity,

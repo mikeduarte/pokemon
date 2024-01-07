@@ -1,5 +1,6 @@
 import { PokemonStat } from './PokemonStat';
-import { PokemonTypes } from './PokemonTypes';
+import { PokemonType } from './PokemonTypes';
+import { Sprites } from './Sprites';
 
 export interface PokemonPreview {
   id: string;
@@ -8,15 +9,19 @@ export interface PokemonPreview {
   isFavorite: boolean;
   name: string;
   number: number;
-  types: PokemonTypes[];
 }
 
 export interface Pokemon extends PokemonPreview {
-  evolutions: PokemonPreview[];
-  height: PokemonStat;
-  maxCP: number;
-  maxHP: number;
-  previousEvolutions: PokemonPreview[];
-  sound: string;
-  weight: PokemonStat;
+  //id: string;
+  //evolutions: PokemonPreview[];
+  height: number;
+  //previousEvolutions: PokemonPreview[];
+  //sound: string;
+  weight: number;
+  stats: PokemonStat[];
+  types: Array<{
+    slot: number;
+    type: PokemonType;
+  }>;
+  sprites: Sprites;
 }

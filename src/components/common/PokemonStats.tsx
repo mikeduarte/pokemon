@@ -1,26 +1,25 @@
-import { Avatar, Badge, Chip, Divider, Stack, Typography } from '@mui/material';
+import { Avatar, Chip, Divider, Stack, Typography } from '@mui/material';
 
-import FavoriteButton from './FavoriteButton';
 import useMobileBreakpoint from '../../hooks/useMobileBreakpoint';
 import { Pokemon } from '../../types/Pokemon';
+import { PokemonStat } from '../../types/PokemonStat';
 
-type PokemonStatsProps = {
-  evolutions: Pokemon['evolutions'];
-  height: Pokemon['height'];
-  maxCP: Pokemon['maxCP'];
-  maxHP: Pokemon['maxHP'];
-  parentId: Pokemon['id'];
-  weight: Pokemon['weight'];
+const findStatByName = (stats: PokemonStat[], name: string) => {
+  const stat = stats.find((stat) => name === stat.stat.name);
+
+  return stat?.base_stat;
 };
 
-const PokemonStats = ({
-  evolutions,
-  height,
-  maxCP,
-  maxHP,
-  parentId,
-  weight,
-}: PokemonStatsProps) => {
+type PokemonStatsProps = {
+  name: Pokemon['name'];
+  height: Pokemon['height'];
+  parentId: Pokemon['id'];
+  weight: Pokemon['weight'];
+  stats: Pokemon['stats'];
+  sprites: Pokemon['sprites'];
+};
+
+const PokemonStats = ({ name, sprites, height, stats, weight }: PokemonStatsProps) => {
   const { isMobileBreakpoint } = useMobileBreakpoint();
 
   return (
@@ -52,26 +51,22 @@ const PokemonStats = ({
             <Typography variant="caption" fontWeight="bold">
               Weight
             </Typography>
-            <Typography variant="body2">
-              {weight.minimum} - {weight.maximum}
-            </Typography>
+            <Typography variant="body2">{weight}</Typography>
           </Stack>
           <Divider flexItem light variant="middle" sx={{ my: 1 }} />
           <Stack direction="row" justifyContent="space-between">
             <Typography variant="caption" fontWeight="bold">
               Height
             </Typography>
-            <Typography variant="body2">
-              {height.minimum} - {height.maximum}
-            </Typography>
+            <Typography variant="body2">{height}</Typography>
           </Stack>
         </Stack>
         <Stack direction="row" spacing={1}>
           <Chip
             size="small"
             variant="outlined"
-            avatar={<Avatar sx={{ color: 'white !important' }}>CP</Avatar>}
-            label={maxCP}
+            avatar={<Avatar sx={{ color: 'white !important' }}>AP</Avatar>}
+            label={findStatByName(stats, 'attack')}
             color="primary"
             sx={{ background: 'white' }}
           />
@@ -79,13 +74,13 @@ const PokemonStats = ({
             size="small"
             variant="outlined"
             avatar={<Avatar sx={{ color: 'white !important' }}>HP</Avatar>}
-            label={maxHP}
+            label={findStatByName(stats, 'hp')}
             color="secondary"
             sx={{ background: 'white' }}
           />
         </Stack>
       </Stack>
-      {!!evolutions?.length && (
+      {sprites && (
         <>
           {!isMobileBreakpoint && (
             <Divider orientation="vertical" flexItem light variant="middle" />
@@ -102,37 +97,15 @@ const PokemonStats = ({
             }}
           >
             <Typography variant="subtitle1" component="h2">
-              Evolutions
+              Showdown
             </Typography>
-            <Stack direction="row" spacing={2} mt={1}>
-              {evolutions.map((evolution) => (
-                <Badge
-                  data-testid={`pokemon-evolution-${evolution.name}`}
-                  key={evolution.id}
-                  overlap="circular"
-                  anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
-                  badgeContent={
-                    <FavoriteButton
-                      id={evolution.id}
-                      isFavorite={evolution.isFavorite}
-                      name={evolution.name}
-                      parentId={parentId}
-                    />
-                  }
-                >
-                  <Avatar
-                    alt={evolution.name}
-                    src={evolution.image}
-                    sx={{ width: 80, height: 80, backgroundColor: 'white' }}
-                    imgProps={{
-                      sx: {
-                        objectFit: 'contain',
-                        p: 1.5,
-                      },
-                    }}
-                  />
-                </Badge>
-              ))}
+            <Stack direction="row" spacing={2} mt={1} flexGrow={1}>
+              <Avatar
+                alt={`${name} showdown animation`}
+                variant="rounded"
+                src={sprites.other.showdown.front_default}
+                sx={{ width: 'auto', height: 'auto', margin: 'auto' }}
+              />
             </Stack>
           </Stack>
         </>

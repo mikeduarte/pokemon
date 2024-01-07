@@ -1,4 +1,9 @@
+export interface Stat {
+  name: string;
+  url: string;
+}
 export interface PokemonStat {
-  maximum: string;
-  minimum: string;
+  base_stat: number;
+  effort: number;
+  stat: Stat;
 }

@@ -61,7 +61,6 @@ const PokemonList = () => {
                   isFavorite={pokemon.isFavorite}
                   isGridView={isGridView}
                   name={pokemon.name}
-                  types={pokemon.types}
                   key={pokemon.id}
                   ref={index === page.data.pokemons.results.length - 5 ? observerRef : undefined}
                 />
