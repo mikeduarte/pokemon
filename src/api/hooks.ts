@@ -9,7 +9,7 @@ import {
 import { get, post } from './Axios';
 import { Pokemon } from '../types/Pokemon';
 import { PokemonPageable } from '../types/PokemonPageable';
-import { PokemonTypesPageable } from '../types/PokemonTypes';
+import { PokemonType, PokemonTypesPageable } from '../types/PokemonTypes';
 
 const TOTAL_LIMIT = 300;
 const GRAPH_QL_BASE_URL = 'https://graphql-pokeapi.graphcdn.app/';
@@ -30,12 +30,7 @@ const gqlQuery = `query pokemons($limit: Int, $offset: Int) {
   }
 }`;
 
-export const useGetPokemonPageable = ({
-  limit = 19,
-  // type = '',
-  // search = '',
-  // isFavorite = false,
-}) => {
+export const useGetPokemonPageable = (limit: number) => {
   const request = ({ pageParam = 0 }): Promise<PokemonPageable> => {
     return post(`${GRAPH_QL_BASE_URL}`, {
       query: gqlQuery,
@@ -57,22 +52,29 @@ export const useGetPokemonPageable = ({
     getNextPageParam: (page) => {
       const params = new URLSearchParams(page.data.pokemons.next?.split('?')[1]);
 
-      const lastPage = {
-        count: page.data.pokemons.count,
-        limit: Number(params.get('limit')) ?? 0,
-        offset: Number(params.get('offset')) ?? 0,
-      };
+      const nextOffset = Number(params.get('offset')) ?? 0;
 
-      if (lastPage.offset >= TOTAL_LIMIT) return undefined;
+      if (nextOffset >= TOTAL_LIMIT) return undefined;
 
-      const pagesLeft =
-        lastPage.count <= lastPage.limit || lastPage.count === lastPage.offset + lastPage.limit
-          ? 0
-          : Math.floor((lastPage.count - lastPage.offset) / lastPage.limit);
-      if (pagesLeft <= 0) return undefined;
-
-      return lastPage.offset + lastPage.limit ?? 0;
+      return nextOffset;
     },
+  });
+};
+
+export const useGetAllPokemon = () => {
+  const request = (): Promise<PokemonPageable> => {
+    return post(`${GRAPH_QL_BASE_URL}`, {
+      query: gqlQuery,
+      variables: {
+        limit: TOTAL_LIMIT,
+        offset: 0,
+      },
+    });
+  };
+
+  return useInfiniteQuery<PokemonPageable, AxiosError>(['all-pokemon'], request, {
+    cacheTime: Infinity,
+    staleTime: Infinity,
   });
 };
 
@@ -84,6 +86,9 @@ export const useGetPokemon = (id: Pokemon['id'] | null) => {
   });
 };
 
+/**
+ * @deprecated The method should not be used. Uses legacy apis
+ */
 export const usePostPokemonFavorite = () => {
   const queryClient = useQueryClient();
   const request = (id: Pokemon['id'], isFavorite: Pokemon['isFavorite']): Promise<Pokemon> =>
@@ -139,9 +144,20 @@ export const usePostPokemonFavorite = () => {
 export const useGetPokemonTypes = () => {
   const request = (): Promise<PokemonTypesPageable> => get(`${BASE_URL}type/`);
 
-  return useQuery<PokemonTypesPageable, AxiosError>(['pokemon', 'types'], request, {
+  return useQuery<PokemonTypesPageable, AxiosError>(['pokemon-types'], request, {
     cacheTime: Infinity,
     staleTime: Infinity,
     useErrorBoundary: false,
+  });
+};
+
+export const useGetPokemonTypeByName = (name: PokemonType['name'] | '') => {
+  const request = (): Promise<PokemonType> => get(`${BASE_URL}type/${name}`);
+
+  return useQuery<PokemonType, AxiosError>(['pokemon-type', name], request, {
+    cacheTime: Infinity,
+    staleTime: Infinity,
+    useErrorBoundary: false,
+    enabled: Boolean(name),
   });
 };

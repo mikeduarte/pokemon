@@ -7,8 +7,6 @@ type PokemonCardTitleProps = {
 };
 
 const PokemonCardTitle = ({ name, types }: PokemonCardTitleProps) => {
-  console.log(types);
-
   return (
     <>
       <Typography component="h2" variant="h6" sx={{ textTransform: 'capitalize' }}>

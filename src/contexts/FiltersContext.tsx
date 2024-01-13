@@ -20,7 +20,8 @@ function useFilters() {
   };
 
   const onFilterChange = (filter: Partial<Filters>) => {
-    clearQueries();
+    if (!filter.searchTerm) clearQueries();
+
     setFilters((currentState) => {
       return {
         ...currentState,

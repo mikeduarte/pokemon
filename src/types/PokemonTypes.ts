@@ -1,3 +1,4 @@
+import { Base } from './Base';
 import { Pageable } from './Pageable';
 
 export type PokemonTypes =
@@ -24,7 +25,11 @@ export type PokemonTypes =
 
 export interface PokemonType {
   name: PokemonTypes;
-  url: string;
+  url?: string;
+  pokemon?: {
+    pokemon: Base;
+    slot: number;
+  }[];
 }
 
 export interface PokemonTypesPageable extends Pageable {
