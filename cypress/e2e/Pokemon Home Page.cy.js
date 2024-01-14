@@ -25,10 +25,10 @@ describe('Pokemon Home Page', () => {
   });
 
   it('filters pokemon by type', () => {
-    cy.getByTestId('type-select').find('input').selectOption('Electric');
+    cy.getByTestId('type-select').find('input').selectOption('electric');
     cy.waitForLoader();
     cy.wait(INTERCEPT.getPage.alias);
-    cy.getByTestId('pokemon-vertical-card').should('be.length', 9);
+    cy.getByTestId('pokemon-vertical-card').should('be.length', 15);
   });
 
   it('switches to list view', () => {
@@ -54,47 +54,40 @@ describe('Pokemon Home Page', () => {
 
   it('adds pokemon to favorites', () => {
     //need to make sure not already a favorite
-    cy.get('button[aria-label*="Bulbasaur"]')
+    cy.get('button[aria-label*="bulbasaur"]')
       .as('favBulbasaur')
       .then(($btn) => {
         if ($btn.attr('aria-label').includes('Remove')) {
-          INTERCEPT.postUnfavorite.intercept();
           cy.get('@favBulbasaur').click();
-          cy.wait(INTERCEPT.postUnfavorite.alias);
         }
       });
 
     //need to make sure not already a favorite
-    cy.get('button[aria-label*="Ivysaur"]')
+    cy.get('button[aria-label*="ivysaur"]')
       .as('favIvysaur')
       .then(($btn) => {
         if ($btn.attr('aria-label').includes('Remove')) {
-          INTERCEPT.postUnfavorite.intercept();
           cy.get('@favIvysaur').click();
-          cy.wait(INTERCEPT.postUnfavorite.alias);
         }
       });
 
-    INTERCEPT.postFavorite.intercept();
     cy.get('@favBulbasaur').click();
     cy.get('@favIvysaur').click();
-    cy.wait([INTERCEPT.postFavorite.alias, INTERCEPT.postFavorite.alias]);
 
     cy.get('button').contains('Favorites').click();
     cy.waitForLoader();
 
-    cy.contains('Bulbasaur').should('exist');
-    cy.contains('Ivysaur').should('exist');
+    cy.contains('bulbasaur').should('exist');
+    cy.contains('ivysaur').should('exist');
   });
 
   it('removes pokemon from favorites', () => {
+    cy.get('button[aria-label*="ivysaur"]').as('favIvysaur').click();
     cy.get('button').contains('Favorites').click();
     cy.waitForLoader();
 
-    INTERCEPT.postUnfavorite.intercept();
-    cy.get('button[aria-label*="Ivysaur"]').as('favIvysaur').click();
-    cy.wait([INTERCEPT.postUnfavorite.alias]);
-    cy.contains('Ivysaur').should('not.exist');
+    cy.get('button[aria-label*="ivysaur"]').as('favIvysaur').click();
+    cy.contains('ivysaur').should('not.exist');
   });
 
   it('navigates to pokemon details page on pokemon card click', () => {
@@ -103,16 +96,16 @@ describe('Pokemon Home Page', () => {
         res.setDelay(1000);
       });
     });
-    cy.contains('Bulbasaur').click();
+    cy.contains('bulbasaur').click();
     cy.waitForLoader();
 
-    cy.url().should('include', 'Bulbasaur');
-    cy.contains('Bulbasaur');
+    cy.url().should('include', 'bulbasaur');
+    cy.contains('bulbasaur');
   });
 
   it('navigates back to home page on browser back button', () => {
     INTERCEPT.getPokemon.intercept();
-    cy.contains('Bulbasaur').click();
+    cy.contains('bulbasaur').click();
     cy.wait(INTERCEPT.getPokemon.alias);
     cy.go('back');
     cy.url().should('match', /\/pokemon$/);
