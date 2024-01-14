@@ -11,7 +11,7 @@ import { Pokemon } from '../types/Pokemon';
 import { PokemonPageable } from '../types/PokemonPageable';
 import { PokemonType, PokemonTypesPageable } from '../types/PokemonTypes';
 
-const TOTAL_LIMIT = 300;
+const TOTAL_LIMIT = 200;
 const GRAPH_QL_BASE_URL = 'https://graphql-pokeapi.graphcdn.app/';
 const BASE_URL = 'https://pokeapi.co/api/v2/';
 

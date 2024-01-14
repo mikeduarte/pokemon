@@ -10,7 +10,6 @@ import { Pokemon } from '../types/Pokemon';
 type ListCardProps = {
   id: Pokemon['id'];
   image: Pokemon['image'];
-  //isFavorite: Pokemon['isFavorite'];
   isGridView: boolean;
   name: Pokemon['name'];
 };
@@ -36,7 +35,6 @@ const ListCard = forwardRef(function GridCard(
           {createElement(isGridView ? PokemonVerticalCard : PokemonHorizontalCard, {
             id,
             image,
-            //isFavorite,
             name,
           })}
         </PokemonLink>
