@@ -34,4 +34,11 @@ describe('Pokemon Details Page', () => {
       cy.get('button[aria-label*="bulbasaur"]').should('exist');
     });
   });
+
+  it('navigates to home page when home link is clicked', () => {
+    cy.getByTestId('pokemon-detail').within(() => {
+      cy.get('a[title*="View all Pokemon"]').click();
+    });
+    cy.url().should('match', /\/pokemon$/);
+  });
 });

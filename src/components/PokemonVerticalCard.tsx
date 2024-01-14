@@ -1,11 +1,13 @@
 import { ReactNode, useContext } from 'react';
-import { Box, Card, CardContent, Stack } from '@mui/material';
+import { Box, Link, Card, CardContent, Stack } from '@mui/material';
+import { Link as RouterLink } from 'react-router-dom';
 
 import FavoriteButton from './common/FavoriteButton';
 import PokemonImage from './common/PokemonImage';
 import PokemonCardTitle from './common/PokemonCardTitle';
 import { Pokemon } from '../types/Pokemon';
 import { FavoritesContext } from '../contexts/FavoritesContext';
+import PokemonBall from './common/PokemonBall';
 
 type PokemonCardProps = {
   disableBorder?: boolean;
@@ -15,6 +17,7 @@ type PokemonCardProps = {
   image: Pokemon['image'];
   name: Pokemon['name'];
   types?: Pokemon['types'];
+  showHomeLink?: boolean;
 };
 
 const PokemonVerticalCard = ({
@@ -25,6 +28,7 @@ const PokemonVerticalCard = ({
   disableBorder,
   disableHover,
   children,
+  showHomeLink = false,
 }: PokemonCardProps) => {
   const { favorites } = useContext(FavoritesContext);
 
@@ -47,6 +51,17 @@ const PokemonVerticalCard = ({
         sx={{ width: '100%', position: 'absolute', left: '0', top: '10px', pr: 1.25, zIndex: 99 }}
       >
         <Stack direction="row" justifyContent="space-between" width="100%">
+          {showHomeLink && (
+            <Link
+              sx={{ width: 30, ml: 1.75, mt: 0.5 }}
+              component={RouterLink}
+              underline="none"
+              to={`/pokemon`}
+              title="View all Pokemon"
+            >
+              <PokemonBall />
+            </Link>
+          )}
           <Box sx={{ ml: 'auto' }}>
             <FavoriteButton id={id} isFavorite={favorites[id]} name={name} />
           </Box>

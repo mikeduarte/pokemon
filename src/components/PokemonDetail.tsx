@@ -38,6 +38,7 @@ const PokemonDetail = () => {
               types={pokemon.types}
               disableBorder={isMobileBreakpoint}
               disableHover
+              showHomeLink
             >
               <PokemonStats
                 name={pokemon.name}

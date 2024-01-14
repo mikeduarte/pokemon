@@ -103,7 +103,10 @@ const PokemonStats = ({ name, sprites, height, stats, weight }: PokemonStatsProp
                 alt={`${name} showdown animation`}
                 variant="rounded"
                 src={sprites.other.showdown.front_default}
-                sx={{ width: 'auto', height: 'auto', margin: 'auto' }}
+                sx={{ width: 'auto', height: 100, margin: 'auto' }}
+                imgProps={{
+                  sx: { objectFit: 'scale-down' },
+                }}
               />
             </Stack>
           </Stack>

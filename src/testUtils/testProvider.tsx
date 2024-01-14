@@ -13,7 +13,7 @@ type Props = {
 };
 
 const mockOnFavoritesChange = vi.fn();
-const defaultValue = {
+const favoritesDefaultValue = {
   1: true,
   2: true,
   3: true,
@@ -33,11 +33,14 @@ const TestProvider: React.FC<Props> = ({ children }) => {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <MemoryRouter>
+      <MemoryRouter initialEntries={['/']}>
         <ThemeProvider theme={theme}>
           <SnackbarProvider>
             <FavoritesContext.Provider
-              value={{ favorites: { ...defaultValue }, onFavoritesChange: mockOnFavoritesChange }}
+              value={{
+                favorites: { ...favoritesDefaultValue },
+                onFavoritesChange: mockOnFavoritesChange,
+              }}
             >
               {children}
             </FavoritesContext.Provider>
