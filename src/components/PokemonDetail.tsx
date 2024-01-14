@@ -34,7 +34,6 @@ const PokemonDetail = () => {
             <PokemonVerticalCard
               id={pokemon.id}
               image={pokemon.sprites?.other?.['official-artwork'].front_default}
-              isFavorite={pokemon.isFavorite}
               name={pokemon.name}
               types={pokemon.types}
               disableBorder={isMobileBreakpoint}
@@ -46,7 +45,6 @@ const PokemonDetail = () => {
                 height={pokemon.height}
                 weight={pokemon.weight}
                 stats={pokemon.stats}
-                parentId={pokemon.id}
               />
             </PokemonVerticalCard>
           </Grid>

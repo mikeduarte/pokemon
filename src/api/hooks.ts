@@ -1,11 +1,5 @@
 import { AxiosError } from 'axios';
-import {
-  useQuery,
-  useInfiniteQuery,
-  useMutation,
-  useQueryClient,
-  InfiniteData,
-} from '@tanstack/react-query';
+import { useQuery, useInfiniteQuery } from '@tanstack/react-query';
 import { get, post } from './Axios';
 import { Pokemon } from '../types/Pokemon';
 import { PokemonPageable } from '../types/PokemonPageable';
@@ -90,64 +84,6 @@ export const useGetPokemonTypeByName = (name: PokemonType['name'] | '') => {
     useErrorBoundary: false,
     enabled: Boolean(name),
   });
-};
-
-/**
- * @deprecated The method should not be used. This uses legacy APIs.
- * // @ts-ignore below is used because funciton is deprecated
- */
-export const usePostPokemonFavorite = () => {
-  const queryClient = useQueryClient();
-  const request = (id: Pokemon['id'], isFavorite: Pokemon['isFavorite']): Promise<Pokemon> =>
-    post(`${BASE_URL}pokemon/${id}/${isFavorite ? '' : 'un'}favorite`, null);
-
-  return useMutation(
-    ({ id, isFavorite }: { id: Pokemon['id']; isFavorite: Pokemon['isFavorite'] }) =>
-      request(id, isFavorite),
-    {
-      onSuccess: (_data, variables) => {
-        const cachedPokemonPageable = queryClient.getQueryData<InfiniteData<PokemonPageable>>([
-          'pokemon',
-        ]);
-        const cachedPokemon = queryClient.getQueryData<Pokemon>(['pokemon', variables.id]);
-        const updatedData = {
-          ...cachedPokemonPageable,
-          pages: cachedPokemonPageable?.pages.map((page) => {
-            return {
-              ...page,
-              // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-              // @ts-ignore
-              items: page.items.map((pokemon) => {
-                if (pokemon.id === variables.id) {
-                  return {
-                    ...pokemon,
-                    isFavorite: variables.isFavorite,
-                  };
-                }
-
-                return { ...pokemon };
-              }),
-            };
-          }),
-        };
-
-        if (cachedPokemonPageable) {
-          queryClient.setQueryData(['pokemon'], {
-            ...updatedData,
-          });
-        }
-
-        if (cachedPokemon) {
-          queryClient.setQueryData(['pokemon', variables.id], {
-            ...cachedPokemon,
-            isFavorite: variables.isFavorite,
-          });
-        }
-
-        queryClient.refetchQueries({ queryKey: ['pokemon'], exact: true });
-      },
-    }
-  );
 };
 
 export const useGetPokemonTypes = () => {

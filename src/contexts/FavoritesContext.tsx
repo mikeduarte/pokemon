@@ -1,4 +1,5 @@
 import { createContext, useState } from 'react';
+import { Pokemon } from '../types/Pokemon';
 
 const FavoritesContext = createContext({} as ReturnType<typeof useFavorites>);
 
@@ -9,7 +10,7 @@ const favoritesMap: {
 function useFavorites() {
   const [favorites, setFavorites] = useState(favoritesMap);
 
-  const onFavoritesChange = (id: string) => {
+  const onFavoritesChange = (id: Pokemon['id']) => {
     setFavorites((currentState) => {
       const updatedFavorites = {
         ...currentState,

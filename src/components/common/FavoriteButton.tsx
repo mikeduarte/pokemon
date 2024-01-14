@@ -8,7 +8,7 @@ import { FavoritesContext } from '../../contexts/FavoritesContext';
 
 type FavoriteButtonProps = {
   id: Pokemon['id'];
-  isFavorite: Pokemon['isFavorite'];
+  isFavorite: boolean;
   name: Pokemon['name'];
 };
 

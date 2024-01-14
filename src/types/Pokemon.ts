@@ -3,7 +3,7 @@ import { PokemonType } from './PokemonTypes';
 import { Sprites } from './Sprites';
 
 export interface PokemonPreview {
-  id: number;
+  id: number | string;
   image?: string;
   artwork?: string;
   name: string;
