@@ -1,19 +1,22 @@
+import { useContext } from 'react';
 import { Box, Card, CardContent, Stack } from '@mui/material';
 import FavoriteButton from './common/FavoriteButton';
 import PokemonImage from './common/PokemonImage';
 
 import PokemonCardTitle from './common/PokemonCardTitle';
 import { Pokemon } from '../types/Pokemon';
+import { FavoritesContext } from '../contexts/FavoritesContext';
 
 type PokemonCardProps = {
   id: Pokemon['id'];
   image: Pokemon['image'];
-  isFavorite: Pokemon['isFavorite'];
   name: Pokemon['name'];
   types?: Pokemon['types'];
 };
 
-const PokemonHorizontalCard = ({ id, image, isFavorite, name, types }: PokemonCardProps) => {
+const PokemonHorizontalCard = ({ id, image, name, types }: PokemonCardProps) => {
+  const { favorites } = useContext(FavoritesContext);
+
   return (
     <Card
       data-testid="pokemon-horizontal-card"
@@ -58,7 +61,7 @@ const PokemonHorizontalCard = ({ id, image, isFavorite, name, types }: PokemonCa
         >
           <PokemonCardTitle name={name} types={types} />
         </CardContent>
-        <FavoriteButton id={id} isFavorite={isFavorite} name={name} />
+        <FavoriteButton id={id} isFavorite={favorites[id]} name={name} />
       </Stack>
     </Card>
   );

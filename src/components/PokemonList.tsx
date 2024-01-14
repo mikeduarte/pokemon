@@ -12,6 +12,7 @@ import NoResults from './NoResults';
 import { PokemonPageable } from '../types/PokemonPageable';
 
 import { PokemonTypes } from '../types/PokemonTypes';
+//import { FavoritesContext } from '../contexts/FavoritesContext';
 
 const useFilteredList = (
   unfilteredList: InfiniteData<PokemonPageable> | undefined,
@@ -76,6 +77,7 @@ const PokemonList = () => {
   const { layout, searchTerm, selectedType, tabView } = filters;
   const isGridView = layout === 'grid';
   const isFavoriteView = tabView !== 'all';
+  //const { favorites } = useContext(FavoritesContext);
 
   const { data: allPokemon, isLoading: isAllPokemonLoading } = useGetAllPokemon();
   const {
@@ -130,7 +132,7 @@ const PokemonList = () => {
                 <ListCard
                   id={pokemon.id}
                   image={pokemon.artwork}
-                  isFavorite={pokemon.isFavorite}
+                  //isFavorite={favorites[pokemon.id]}
                   isGridView={isGridView}
                   name={pokemon.name}
                   key={pokemon.id}

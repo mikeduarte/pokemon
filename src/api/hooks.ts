@@ -38,11 +38,6 @@ export const useGetPokemonPageable = (limit: number) => {
         limit: limit,
         offset: pageParam,
       },
-      //limit: limit,
-      //offset: pageParam,
-      //type: type,
-      ///search: search,
-      //...(isFavorite && { isFavorite: true }),
     });
   };
 
@@ -86,8 +81,20 @@ export const useGetPokemon = (id: Pokemon['id'] | null) => {
   });
 };
 
+export const useGetPokemonTypeByName = (name: PokemonType['name'] | '') => {
+  const request = (): Promise<PokemonType> => get(`${BASE_URL}type/${name}`);
+
+  return useQuery<PokemonType, AxiosError>(['pokemon-type', name], request, {
+    cacheTime: Infinity,
+    staleTime: Infinity,
+    useErrorBoundary: false,
+    enabled: Boolean(name),
+  });
+};
+
 /**
- * @deprecated The method should not be used. Uses legacy apis
+ * @deprecated The method should not be used. This uses legacy APIs.
+ * // @ts-ignore below is used because funciton is deprecated
  */
 export const usePostPokemonFavorite = () => {
   const queryClient = useQueryClient();
@@ -108,6 +115,8 @@ export const usePostPokemonFavorite = () => {
           pages: cachedPokemonPageable?.pages.map((page) => {
             return {
               ...page,
+              // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+              // @ts-ignore
               items: page.items.map((pokemon) => {
                 if (pokemon.id === variables.id) {
                   return {
@@ -148,16 +157,5 @@ export const useGetPokemonTypes = () => {
     cacheTime: Infinity,
     staleTime: Infinity,
     useErrorBoundary: false,
-  });
-};
-
-export const useGetPokemonTypeByName = (name: PokemonType['name'] | '') => {
-  const request = (): Promise<PokemonType> => get(`${BASE_URL}type/${name}`);
-
-  return useQuery<PokemonType, AxiosError>(['pokemon-type', name], request, {
-    cacheTime: Infinity,
-    staleTime: Infinity,
-    useErrorBoundary: false,
-    enabled: Boolean(name),
   });
 };
