@@ -1,10 +1,11 @@
-import { useContext } from 'react';
+import { useContext, useMemo } from 'react';
 import { InfiniteData } from '@tanstack/react-query';
 
 import { PokemonPageable } from '../types/PokemonPageable';
 import { PokemonTypes } from '../types/PokemonTypes';
 import { FavoritesContext } from '../contexts/FavoritesContext';
 import { useGetPokemonTypeByName } from '../api/hooks';
+import { PokemonPreview } from '../types/Pokemon';
 
 const useFilteredList = (
   unfilteredList: InfiniteData<PokemonPageable> | undefined,
@@ -27,47 +28,49 @@ const useFilteredList = (
   };
   const { favorites } = useContext(FavoritesContext);
   const { data: pokemonTypeByName, isFetching, isError } = useGetPokemonTypeByName(selectedType);
-  let hasFilters = false;
 
-  if (allPokemon?.pages) {
-    let filteredResults = [...allPokemon.pages[0].data.pokemons.results];
+  const filteredData = useMemo(() => {
+    let hasFilters = false;
+    let filteredResults: PokemonPreview[] = [];
 
-    if (isFavoriteView) {
-      const filteredResultsByFavorites = filteredResults.filter((pokemon) => {
-        return favorites[pokemon.id];
-      });
+    if (allPokemon?.pages) {
+      filteredResults = [...allPokemon.pages[0].data.pokemons.results];
 
-      filteredResults = filteredResultsByFavorites;
-      hasFilters = true;
+      if (isFavoriteView) {
+        filteredResults = filteredResults.filter((pokemon) => {
+          return favorites[pokemon.id];
+        });
+        hasFilters = true;
+      }
+
+      if (search) {
+        filteredResults = filteredResults.filter((pokemon) =>
+          pokemon.name.includes(search.toLocaleLowerCase())
+        );
+        hasFilters = true;
+      }
+
+      if (pokemonTypeByName?.pokemon) {
+        const pokemonNames = pokemonTypeByName.pokemon.map((pokemon) => pokemon.pokemon.name);
+        filteredResults = filteredResults.filter((pokemon) => pokemonNames.includes(pokemon.name));
+        hasFilters = true;
+      }
     }
 
-    if (search) {
-      const filteredResultsBySearch = filteredResults.filter((pokemon) =>
-        pokemon.name.includes(search.toLocaleLowerCase())
-      );
+    return {
+      hasFilters,
+      filteredResults,
+    };
+  }, [allPokemon, isFavoriteView, search, pokemonTypeByName, favorites]);
 
-      filteredResults = filteredResultsBySearch;
-      hasFilters = true;
-    }
-
-    if (pokemonTypeByName?.pokemon) {
-      const pokemonNames = pokemonTypeByName.pokemon.map((pokemon) => pokemon.pokemon.name);
-
-      const filteredResultsByType = filteredResults.filter((pokemon) =>
-        pokemonNames.includes(pokemon.name)
-      );
-
-      filteredResults = filteredResultsByType;
-      hasFilters = true;
-    }
-
-    filteredList.pages[0].data.pokemons.results.push(...filteredResults);
+  if (filteredData.hasFilters) {
+    filteredList.pages[0].data.pokemons.results.push(...filteredData.filteredResults);
   }
 
   return {
     isFetching,
-    filteredList: hasFilters ? filteredList : unfilteredList,
-    hasFilters,
+    filteredList: filteredData.hasFilters ? filteredList : unfilteredList,
+    hasFilters: filteredData.hasFilters,
     isError,
   };
 };
