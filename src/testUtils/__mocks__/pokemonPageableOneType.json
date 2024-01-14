@@ -1,40 +1,145 @@
 {
-    "limit": 16,
-    "offset": 0,
-    "count": 3,
-    "items": [
+    "name": "grass",
+    "pokemon": [
         {
-            "id": "001",
-            "number": 1,
-            "name": "Bulbasaur",
-            "image": "https://img.pokemondb.net/artwork/bulbasaur.jpg",
-            "isFavorite": true,
-            "types": [
-                "Grass",
-                "Poison"
-            ]
+            "pokemon": {
+                "name": "bulbasaur",
+                "url": "https://pokeapi.co/api/v2/pokemon/1/"
+            },
+            "slot": 1
         },
         {
-            "id": "002",
-            "number": 2,
-            "name": "Ivysaur",
-            "image": "https://img.pokemondb.net/artwork/ivysaur.jpg",
-            "isFavorite": true,
-            "types": [
-                "Grass",
-                "Poison"
-            ]
+            "pokemon": {
+                "name": "ivysaur",
+                "url": "https://pokeapi.co/api/v2/pokemon/2/"
+            },
+            "slot": 1
         },
         {
-            "id": "003",
-            "number": 3,
-            "name": "Venusaur",
-            "image": "https://img.pokemondb.net/artwork/venusaur.jpg",
-            "isFavorite": true,
-            "types": [
-                "Grass",
-                "Poison"
-            ]
+            "pokemon": {
+                "name": "venusaur",
+                "url": "https://pokeapi.co/api/v2/pokemon/3/"
+            },
+            "slot": 1
+        },
+        {
+            "pokemon": {
+                "name": "oddish",
+                "url": "https://pokeapi.co/api/v2/pokemon/43/"
+            },
+            "slot": 1
+        },
+        {
+            "pokemon": {
+                "name": "gloom",
+                "url": "https://pokeapi.co/api/v2/pokemon/44/"
+            },
+            "slot": 1
+        },
+        {
+            "pokemon": {
+                "name": "vileplume",
+                "url": "https://pokeapi.co/api/v2/pokemon/45/"
+            },
+            "slot": 1
+        },
+        {
+            "pokemon": {
+                "name": "paras",
+                "url": "https://pokeapi.co/api/v2/pokemon/46/"
+            },
+            "slot": 2
+        },
+        {
+            "pokemon": {
+                "name": "parasect",
+                "url": "https://pokeapi.co/api/v2/pokemon/47/"
+            },
+            "slot": 2
+        },
+        {
+            "pokemon": {
+                "name": "bellsprout",
+                "url": "https://pokeapi.co/api/v2/pokemon/69/"
+            },
+            "slot": 1
+        },
+        {
+            "pokemon": {
+                "name": "weepinbell",
+                "url": "https://pokeapi.co/api/v2/pokemon/70/"
+            },
+            "slot": 1
+        },
+        {
+            "pokemon": {
+                "name": "victreebel",
+                "url": "https://pokeapi.co/api/v2/pokemon/71/"
+            },
+            "slot": 1
+        },
+        {
+            "pokemon": {
+                "name": "exeggcute",
+                "url": "https://pokeapi.co/api/v2/pokemon/102/"
+            },
+            "slot": 1
+        },
+        {
+            "pokemon": {
+                "name": "exeggutor",
+                "url": "https://pokeapi.co/api/v2/pokemon/103/"
+            },
+            "slot": 1
+        },
+        {
+            "pokemon": {
+                "name": "tangela",
+                "url": "https://pokeapi.co/api/v2/pokemon/114/"
+            },
+            "slot": 1
+        },
+        {
+            "pokemon": {
+                "name": "chikorita",
+                "url": "https://pokeapi.co/api/v2/pokemon/152/"
+            },
+            "slot": 1
+        },
+        {
+            "pokemon": {
+                "name": "bayleef",
+                "url": "https://pokeapi.co/api/v2/pokemon/153/"
+            },
+            "slot": 1
+        },
+        {
+            "pokemon": {
+                "name": "meganium",
+                "url": "https://pokeapi.co/api/v2/pokemon/154/"
+            },
+            "slot": 1
+        },
+        {
+            "pokemon": {
+                "name": "bellossom",
+                "url": "https://pokeapi.co/api/v2/pokemon/182/"
+            },
+            "slot": 1
+        },
+        {
+            "pokemon": {
+                "name": "hoppip",
+                "url": "https://pokeapi.co/api/v2/pokemon/187/"
+            },
+            "slot": 1
+        },
+        {
+            "pokemon": {
+                "name": "skiploom",
+                "url": "https://pokeapi.co/api/v2/pokemon/188/"
+            },
+            "slot": 1
         }
     ]
 }

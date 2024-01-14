@@ -5,7 +5,7 @@ import ListCard from '../ListCard';
 
 describe('ListCard', () => {
   it('renders vertical card when is grid view', () => {
-    render(<ListCard id="" image="" name="" types={[]} isFavorite isGridView />, {
+    render(<ListCard id="" image="" name="" isGridView />, {
       wrapper: TestProvider,
     });
 
@@ -15,7 +15,7 @@ describe('ListCard', () => {
   });
 
   it('renders horizontal card when is list view', () => {
-    render(<ListCard id="" image="" name="" types={[]} isFavorite isGridView={false} />, {
+    render(<ListCard id="" image="" name="" isGridView={false} />, {
       wrapper: TestProvider,
     });
 

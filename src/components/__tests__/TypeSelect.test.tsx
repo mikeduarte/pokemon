@@ -29,9 +29,9 @@ describe('TypeSelect', () => {
     userEvent.click(autocomplete);
 
     const options = await screen.findAllByRole('option');
-    expect(options).toHaveLength(17);
+    expect(options).toHaveLength(20);
 
-    userEvent.click(screen.getByRole('option', { name: 'Grass' }));
-    await waitFor(() => expect(mockOnChange).toHaveBeenCalledWith({ selectedType: 'Grass' }));
+    userEvent.click(screen.getByRole('option', { name: 'grass' }));
+    await waitFor(() => expect(mockOnChange).toHaveBeenCalledWith({ selectedType: 'grass' }));
   });
 });

@@ -13,7 +13,6 @@ const findStatByName = (stats: PokemonStat[], name: string) => {
 type PokemonStatsProps = {
   name: Pokemon['name'];
   height: Pokemon['height'];
-  parentId: Pokemon['id'];
   weight: Pokemon['weight'];
   stats: Pokemon['stats'];
   sprites: Pokemon['sprites'];

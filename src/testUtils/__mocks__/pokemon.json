@@ -1,49 +1,90 @@
 {
-    "id": "001",
-    "name": "Bulbasaur",
-    "types": [
-      "Grass",
-      "Poison"
-    ],
-    "weight": {
-      "minimum": "6.04kg",
-      "maximum": "7.76kg"
-    },
-    "height": {
-      "minimum": "0.61m",
-      "maximum": "0.79m"
-    },
-    "evolutions": [
+  "height": 7,
+  "id": 1,
+  "name": "bulbasaur",
+  "sprites": {
+      "front_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1.png",
+      "other": {
+          "dream_world": {
+              "front_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/1.svg"
+          },
+          "home": {
+              "front_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/1.png"
+          },
+          "official-artwork": {
+              "front_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/1.png"
+          },
+          "showdown": {
+              "back_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/back/1.gif",
+              "front_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/1.gif"
+          }
+      }
+  },
+  "stats": [
       {
-        "id": "002",
-        "number": 2,
-        "name": "Ivysaur",
-        "image": "https://img.pokemondb.net/artwork/ivysaur.jpg",
-        "isFavorite": false,
-        "types": [
-          "Grass",
-          "Poison"
-        ]
+          "base_stat": 45,
+          "effort": 0,
+          "stat": {
+              "name": "hp",
+              "url": "https://pokeapi.co/api/v2/stat/1/"
+          }
       },
       {
-        "id": "003",
-        "number": 3,
-        "name": "Venusaur",
-        "image": "https://img.pokemondb.net/artwork/venusaur.jpg",
-        "isFavorite": false,
-        "types": [
-          "Grass",
-          "Poison"
-        ]
+          "base_stat": 49,
+          "effort": 0,
+          "stat": {
+              "name": "attack",
+              "url": "https://pokeapi.co/api/v2/stat/2/"
+          }
+      },
+      {
+          "base_stat": 49,
+          "effort": 0,
+          "stat": {
+              "name": "defense",
+              "url": "https://pokeapi.co/api/v2/stat/3/"
+          }
+      },
+      {
+          "base_stat": 65,
+          "effort": 1,
+          "stat": {
+              "name": "special-attack",
+              "url": "https://pokeapi.co/api/v2/stat/4/"
+          }
+      },
+      {
+          "base_stat": 65,
+          "effort": 0,
+          "stat": {
+              "name": "special-defense",
+              "url": "https://pokeapi.co/api/v2/stat/5/"
+          }
+      },
+      {
+          "base_stat": 45,
+          "effort": 0,
+          "stat": {
+              "name": "speed",
+              "url": "https://pokeapi.co/api/v2/stat/6/"
+          }
       }
-    ],
-    "maxCP": 951,
-    "maxHP": 1071,
-    "number": 1,
-    "previousEvolutions": [
-      
-    ],
-    "image": "https://img.pokemondb.net/artwork/bulbasaur.jpg",
-    "sound": "https://play.pokemonshowdown.com/audio/cries/bulbasaur.mp3",
-    "isFavorite": true
-  }
+  ],
+  "types": [
+      {
+          "slot": 1,
+          "type": {
+              "name": "grass",
+              "url": "https://pokeapi.co/api/v2/type/12/"
+          }
+      },
+      {
+          "slot": 2,
+          "type": {
+              "name": "poison",
+              "url": "https://pokeapi.co/api/v2/type/4/"
+          }
+      }
+  ],
+  "weight": 69
+}

@@ -29,13 +29,11 @@ const setup = (value = defaultValue) => {
 describe('PokemonList', () => {
   it('renders', () => {
     setup();
-
     expect(screen.getByTestId('pokemon-list')).toBeInTheDocument();
   });
 
   it('displays pokemon loader during request', async () => {
     setup();
-
     expect(await screen.findByTestId('pokemon-loader')).toBeInTheDocument();
     await waitForElementToBeRemoved(() => screen.queryByTestId('pokemon-loader'), {
       timeout: 5000,
@@ -45,16 +43,14 @@ describe('PokemonList', () => {
 
   it('renders grid layout with infinite scroll', async () => {
     setup();
-
     const cards = await screen.findAllByTestId('list-card', undefined, {
       timeout: 5000,
     });
     expect(cards).toHaveLength(16);
     expect(await screen.findAllByTestId('vertical-card-skeleton')).toHaveLength(24);
-
     //fire observer is in view
     mockIsIntersecting(cards[11], 1);
-    expect(await screen.findByText('Pidgeotto', undefined, { timeout: 5000 })).toBeInTheDocument();
+    expect(await screen.findByText('pidgeotto', undefined, { timeout: 5000 })).toBeInTheDocument();
     expect(screen.getAllByTestId('list-card')).toHaveLength(17);
   });
 
@@ -63,16 +59,14 @@ describe('PokemonList', () => {
       ...defaultValue,
       layout: 'list',
     });
-
     const cards = await screen.findAllByTestId('list-card', undefined, {
       timeout: 5000,
     });
     expect(cards).toHaveLength(16);
     expect(await screen.findAllByTestId('horizontal-card-skeleton')).toHaveLength(24);
-
     //fire observer is in view
     mockIsIntersecting(cards[11], 1);
-    expect(await screen.findByText('Pidgeotto', undefined, { timeout: 5000 })).toBeInTheDocument();
+    expect(await screen.findByText('pidgeotto', undefined, { timeout: 5000 })).toBeInTheDocument();
     expect(screen.getAllByTestId('list-card')).toHaveLength(17);
   });
 
@@ -81,18 +75,20 @@ describe('PokemonList', () => {
       ...defaultValue,
       tabView: 'favorites',
     });
-
-    const cards = await screen.findAllByTestId('list-card');
+    const cards = await screen.findAllByTestId('list-card', undefined, {
+      timeout: 5000,
+    });
     expect(cards).toHaveLength(4);
   });
 
   it('renders list filtered by type', async () => {
     setup({
       ...defaultValue,
-      selectedType: 'Grass',
+      selectedType: 'grass',
     });
-
-    const cards = await screen.findAllByTestId('list-card');
+    const cards = await screen.findAllByTestId('list-card', undefined, {
+      timeout: 5000,
+    });
     expect(cards).toHaveLength(3);
   });
 
@@ -101,8 +97,9 @@ describe('PokemonList', () => {
       ...defaultValue,
       searchTerm: 'Bul',
     });
-
-    const cards = await screen.findAllByTestId('list-card');
+    const cards = await screen.findAllByTestId('list-card', undefined, {
+      timeout: 5000,
+    });
     expect(cards).toHaveLength(1);
   });
 
@@ -111,8 +108,9 @@ describe('PokemonList', () => {
       ...defaultValue,
       searchTerm: 'no results',
     });
-
-    const noResults = await screen.findByTestId('no-results');
+    const noResults = await screen.findByTestId('no-results', undefined, {
+      timeout: 5000,
+    });
     expect(noResults).toBeInTheDocument();
   });
 });

@@ -11,3 +11,5 @@ export const QUERY_CLIENT_CONFIG: QueryClientConfig = {
     },
   },
 };
+
+export const TOTAL_LIMIT = 200;
