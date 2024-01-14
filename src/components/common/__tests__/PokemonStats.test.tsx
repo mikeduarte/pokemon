@@ -11,11 +11,10 @@ describe('PokemonStats', () => {
   it('renders the pokemon stats', () => {
     render(
       <PokemonStats
-        evolutions={mockPokemon.evolutions}
+        name={mockPokemon.name}
         height={mockPokemon.height}
-        maxCP={mockPokemon.maxCP}
-        maxHP={mockPokemon.maxHP}
-        parentId={mockPokemon.id}
+        stats={mockPokemon.stats}
+        sprites={mockPokemon.sprites}
         weight={mockPokemon.weight}
       />,
       {
@@ -23,19 +22,14 @@ describe('PokemonStats', () => {
       }
     );
 
-    expect(screen.getByText(mockPokemon.height.minimum, { exact: false })).toBeInTheDocument();
-    expect(screen.getByText(mockPokemon.height.maximum, { exact: false })).toBeInTheDocument();
-    expect(screen.getByText(mockPokemon.maxCP)).toBeInTheDocument();
-    expect(screen.getByText(mockPokemon.maxHP)).toBeInTheDocument();
-    expect(screen.getByText(mockPokemon.weight.minimum, { exact: false })).toBeInTheDocument();
-    expect(screen.getByText(mockPokemon.weight.maximum, { exact: false })).toBeInTheDocument();
-
-    // Evolution badge
-    expect(screen.getByTestId('pokemon-evolution-Ivysaur')).toBeInTheDocument();
-    expect(screen.getByTestId('pokemon-evolution-Venusaur')).toBeInTheDocument();
-
-    //Favorite button
-    expect(screen.getByRole('button', { name: /Ivysaur/i })).toBeInTheDocument();
-    expect(screen.getByRole('button', { name: /Venusaur/i })).toBeInTheDocument();
+    expect(screen.getByText(mockPokemon.height, { exact: false })).toBeInTheDocument();
+    expect(screen.getByText(mockPokemon.height, { exact: false })).toBeInTheDocument();
+    expect(screen.getByRole('heading', { name: 'Stats' })).toBeInTheDocument();
+    expect(screen.getByRole('heading', { name: 'Showdown' })).toBeInTheDocument();
+    expect(screen.getByText('AP', { exact: false })).toBeInTheDocument();
+    expect(screen.getByText('49', { exact: false })).toBeInTheDocument();
+    expect(screen.getByText('HP', { exact: false })).toBeInTheDocument();
+    expect(screen.getByText('45', { exact: false })).toBeInTheDocument();
+    expect(screen.getByRole('img', { name: 'bulbasaur showdown animation' })).toBeInTheDocument();
   });
 });

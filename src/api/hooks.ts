@@ -9,24 +9,34 @@ import {
 import { get, post } from './Axios';
 import { Pokemon } from '../types/Pokemon';
 import { PokemonPageable } from '../types/PokemonPageable';
-import { PokemonTypes } from '../types/PokemonTypes';
+import { PokemonType, PokemonTypesPageable } from '../types/PokemonTypes';
+import { TOTAL_LIMIT } from '../config';
 
-const BASE_URL = 'https://q-exercise-api.o64ixruq9hj.us-south.codeengine.appdomain.cloud/api/rest/';
+const GRAPH_QL_BASE_URL = 'https://graphql-pokeapi.graphcdn.app/';
+const BASE_URL = 'https://pokeapi.co/api/v2/';
 
-export const useGetPokemonPageable = ({
-  limit = 19,
-  type = '',
-  search = '',
-  isFavorite = false,
-}) => {
+const gqlQuery = `query pokemons($limit: Int, $offset: Int) {
+  pokemons(limit: $limit, offset: $offset) {
+    count
+    next
+    previous
+    status
+    message
+    results {
+      id
+      name
+      artwork
+    }
+  }
+}`;
+
+export const useGetPokemonPageable = (limit: number) => {
   const request = ({ pageParam = 0 }): Promise<PokemonPageable> => {
-    return get(`${BASE_URL}pokemon/`, {
-      params: {
+    return post(`${GRAPH_QL_BASE_URL}`, {
+      query: gqlQuery,
+      variables: {
         limit: limit,
         offset: pageParam,
-        type: type,
-        search: search,
-        ...(isFavorite && { isFavorite: true }),
       },
     });
   };
@@ -34,15 +44,32 @@ export const useGetPokemonPageable = ({
   return useInfiniteQuery<PokemonPageable, AxiosError>(['pokemon'], request, {
     cacheTime: Infinity,
     staleTime: Infinity,
-    getNextPageParam: (lastPage) => {
-      const pagesLeft =
-        lastPage.count <= lastPage.limit || lastPage.count === lastPage.offset + lastPage.limit
-          ? 0
-          : Math.floor((lastPage.count - lastPage.offset) / lastPage.limit);
-      if (pagesLeft <= 0) return undefined;
+    getNextPageParam: (page) => {
+      const params = new URLSearchParams(page.data.pokemons.next?.split('?')[1]);
 
-      return lastPage.offset + lastPage.limit ?? 0;
+      const nextOffset = Number(params.get('offset')) ?? 0;
+
+      if (nextOffset >= TOTAL_LIMIT) return undefined;
+
+      return nextOffset;
     },
+  });
+};
+
+export const useGetAllPokemon = () => {
+  const request = (): Promise<PokemonPageable> => {
+    return post(`${GRAPH_QL_BASE_URL}`, {
+      query: gqlQuery,
+      variables: {
+        limit: TOTAL_LIMIT,
+        offset: 0,
+      },
+    });
+  };
+
+  return useInfiniteQuery<PokemonPageable, AxiosError>(['all-pokemon'], request, {
+    cacheTime: Infinity,
+    staleTime: Infinity,
   });
 };
 
@@ -54,6 +81,21 @@ export const useGetPokemon = (id: Pokemon['id'] | null) => {
   });
 };
 
+export const useGetPokemonTypeByName = (name: PokemonType['name'] | '') => {
+  const request = (): Promise<PokemonType> => get(`${BASE_URL}type/${name}`);
+
+  return useQuery<PokemonType, AxiosError>(['pokemon-type', name], request, {
+    cacheTime: Infinity,
+    staleTime: Infinity,
+    useErrorBoundary: false,
+    enabled: Boolean(name),
+  });
+};
+
+/**
+ * @deprecated The method should not be used. This uses legacy APIs.
+ * // @ts-ignore below is used because funciton is deprecated
+ */
 export const usePostPokemonFavorite = () => {
   const queryClient = useQueryClient();
   const request = (id: Pokemon['id'], isFavorite: Pokemon['isFavorite']): Promise<Pokemon> =>
@@ -73,6 +115,8 @@ export const usePostPokemonFavorite = () => {
           pages: cachedPokemonPageable?.pages.map((page) => {
             return {
               ...page,
+              // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+              // @ts-ignore
               items: page.items.map((pokemon) => {
                 if (pokemon.id === variables.id) {
                   return {
@@ -107,9 +151,9 @@ export const usePostPokemonFavorite = () => {
 };
 
 export const useGetPokemonTypes = () => {
-  const request = (): Promise<PokemonTypes[]> => get(`${BASE_URL}pokemon-types`);
+  const request = (): Promise<PokemonTypesPageable> => get(`${BASE_URL}type/`);
 
-  return useQuery<PokemonTypes[], AxiosError>(['pokemon', 'types'], request, {
+  return useQuery<PokemonTypesPageable, AxiosError>(['pokemon-types'], request, {
     cacheTime: Infinity,
     staleTime: Infinity,
     useErrorBoundary: false,

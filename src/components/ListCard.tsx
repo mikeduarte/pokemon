@@ -10,17 +10,15 @@ import { Pokemon } from '../types/Pokemon';
 type ListCardProps = {
   id: Pokemon['id'];
   image: Pokemon['image'];
-  isFavorite: Pokemon['isFavorite'];
   isGridView: boolean;
   name: Pokemon['name'];
-  types: Pokemon['types'];
 };
 
 const ListCard = forwardRef(function GridCard(
   props: ListCardProps,
   ref: React.ForwardedRef<HTMLLIElement>
 ) {
-  const { id, image, isFavorite, isGridView, name, types } = props;
+  const { id, image, isGridView, name } = props;
 
   const layoutStyles = useMemo(
     () => ({
@@ -37,9 +35,7 @@ const ListCard = forwardRef(function GridCard(
           {createElement(isGridView ? PokemonVerticalCard : PokemonHorizontalCard, {
             id,
             image,
-            isFavorite,
             name,
-            types,
           })}
         </PokemonLink>
       </Box>

@@ -1,42 +1,25 @@
-import { MouseEvent } from 'react';
-import { useQueryClient } from '@tanstack/react-query';
-import { useSnackbar } from 'notistack';
+import { MouseEvent, useContext } from 'react';
 import { IconButton, Tooltip } from '@mui/material';
 import FavoriteTwoToneIcon from '@mui/icons-material/FavoriteTwoTone';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 
-import { usePostPokemonFavorite } from '../../api/hooks';
 import { Pokemon } from '../../types/Pokemon';
+import { FavoritesContext } from '../../contexts/FavoritesContext';
 
 type FavoriteButtonProps = {
   id: Pokemon['id'];
   isFavorite: Pokemon['isFavorite'];
   name: Pokemon['name'];
-  parentId?: Pokemon['id'];
 };
 
-const FavoriteButton = ({ id, isFavorite, name, parentId }: FavoriteButtonProps) => {
-  const queryClient = useQueryClient();
-  const favoriteMutation = usePostPokemonFavorite();
-  const { enqueueSnackbar } = useSnackbar();
+const FavoriteButton = ({ id, isFavorite, name }: FavoriteButtonProps) => {
+  const { onFavoritesChange } = useContext(FavoritesContext);
+
   const label = `${isFavorite ? 'Remove' : 'Add'} ${name} ${isFavorite ? 'from' : 'to'} favorites`;
 
   const onFavoriteClick = (event: MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
-
-    favoriteMutation.mutate(
-      { id, isFavorite: !isFavorite },
-      {
-        onSuccess: () => {
-          if (parentId) queryClient.invalidateQueries(['pokemon', parentId]);
-        },
-        onError: () => {
-          enqueueSnackbar('Error saving favorite!', {
-            variant: 'error',
-          });
-        },
-      }
-    );
+    onFavoritesChange(id);
   };
 
   return (
@@ -45,7 +28,6 @@ const FavoriteButton = ({ id, isFavorite, name, parentId }: FavoriteButtonProps)
         data-testid="favorite-button"
         size="small"
         onClick={(event) => onFavoriteClick(event)}
-        disabled={favoriteMutation.isLoading ? true : false}
         aria-label={label}
       >
         {!isFavorite ? (

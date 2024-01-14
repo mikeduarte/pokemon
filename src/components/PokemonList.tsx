@@ -2,12 +2,13 @@ import { useContext, useMemo } from 'react';
 import { useInView } from 'react-intersection-observer';
 import { Box, Grid } from '@mui/material';
 
-import { useGetPokemonPageable } from '../api/hooks';
+import { useGetAllPokemon, useGetPokemonPageable } from '../api/hooks';
 import { FiltersContext } from '../contexts/FiltersContext';
 import PokemonLoader from './common/PokemonLoader';
 import ListCard from './ListCard';
 import ListCardSkeleton from './ListCardSkeleton';
 import NoResults from './NoResults';
+import useFilteredList from '../hooks/useFilteredList';
 
 const PokemonList = () => {
   const { filters } = useContext(FiltersContext);
@@ -15,12 +16,21 @@ const PokemonList = () => {
   const isGridView = layout === 'grid';
   const isFavoriteView = tabView !== 'all';
 
-  const { data, isLoading, fetchNextPage, hasNextPage } = useGetPokemonPageable({
-    limit: 16,
-    type: selectedType,
-    search: searchTerm,
-    isFavorite: isFavoriteView,
-  });
+  const { data: allPokemon, isLoading: isAllPokemonLoading } = useGetAllPokemon();
+  const {
+    data: unfilteredList,
+    isLoading: isPageableLoading,
+    fetchNextPage,
+    hasNextPage,
+  } = useGetPokemonPageable(16);
+  const {
+    filteredList,
+    hasFilters,
+    isFetching: isFiltersLoading,
+    isError,
+  } = useFilteredList(unfilteredList, allPokemon, selectedType, searchTerm, isFavoriteView);
+
+  const isLoading = isPageableLoading || isAllPokemonLoading || isFiltersLoading;
 
   const inViewOptions = useMemo(
     () => ({
@@ -36,10 +46,12 @@ const PokemonList = () => {
   const [observerRef] = useInView(inViewOptions);
   const [endObserverRef] = useInView(inViewOptions);
 
+  if (isError) throw new Error();
+
   return (
     <>
       {isLoading && <PokemonLoader />}
-      {!isLoading && !data?.pages?.[0]?.items.length && <NoResults />}
+      {!isLoading && !filteredList?.pages[0].data.pokemons.results.length && <NoResults />}
       <Grid
         data-testid="pokemon-list"
         component="ul"
@@ -49,28 +61,25 @@ const PokemonList = () => {
         sx={{ listStyle: 'none' }}
       >
         {!isLoading &&
-          data?.pages &&
-          data?.pages?.map((page) => {
-            return page.items?.map((pokemon, index) => {
-              if (isFavoriteView && !pokemon.isFavorite) return null;
-
+          filteredList?.pages?.map((page) => {
+            return page.data.pokemons.results.map((pokemon, index) => {
               return (
                 <ListCard
                   id={pokemon.id}
-                  image={pokemon.image}
-                  isFavorite={pokemon.isFavorite}
+                  image={pokemon.artwork}
                   isGridView={isGridView}
                   name={pokemon.name}
-                  types={pokemon.types}
                   key={pokemon.id}
-                  ref={index === page.items.length - 5 ? observerRef : undefined}
+                  ref={index === page.data.pokemons.results.length - 5 ? observerRef : undefined}
                 />
               );
             });
           })}
-        {hasNextPage && <ListCardSkeleton isGridView={isGridView} count={24} />}
+        {hasNextPage && !hasFilters && <ListCardSkeleton isGridView={isGridView} count={24} />}
       </Grid>
-      {hasNextPage && <Box ref={endObserverRef} sx={{ height: '100vh', mt: '-100vh' }}></Box>}
+      {hasNextPage && !hasFilters && (
+        <Box ref={endObserverRef} sx={{ height: '100vh', mt: '-100vh' }}></Box>
+      )}
     </>
   );
 };

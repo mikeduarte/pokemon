@@ -5,7 +5,7 @@ import PokemonHorizontalCard from '../PokemonHorizontalCard';
 
 describe('PokemonHorizontalCard', () => {
   it('renders', () => {
-    render(<PokemonHorizontalCard id="" image="" name="name" types={[]} isFavorite />, {
+    render(<PokemonHorizontalCard id="" image="" name="name" types={[]} />, {
       wrapper: TestProvider,
     });
 

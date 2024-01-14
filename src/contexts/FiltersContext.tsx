@@ -21,6 +21,7 @@ function useFilters() {
 
   const onFilterChange = (filter: Partial<Filters>) => {
     clearQueries();
+
     setFilters((currentState) => {
       return {
         ...currentState,

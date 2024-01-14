@@ -1,35 +1,33 @@
-import { rest } from 'msw';
+import { rest, graphql } from 'msw';
 import pokemonPageableOne from '../../__mocks__/pokemonPageableOne.json';
 import pokemonPageableTwo from '../../__mocks__/pokemonPageableTwo.json';
-import pokemonPageableOneSearch from '../../__mocks__/pokemonPageableOneSearch.json';
 import pokemonPageableOneType from '../../__mocks__/pokemonPageableOneType.json';
-import pokemonPageableOneFavorites from '../../__mocks__/pokemonPageableOneFavorites.json';
-import pokemonPageableNoResults from '../../__mocks__/pokemonPageableNoResults.json';
 import pokemonTypes from '../../__mocks__/pokemonTypes.json';
 import pokemon from '../../__mocks__/pokemon.json';
+import { TOTAL_LIMIT } from '../../../config';
 
 const handlers = [
   // ----------------------------------------------------------------------
   // GET
   // ----------------------------------------------------------------------
-  rest.get(/\/pokemon\/$/, (req, res, ctx) => {
-    const offset = req.url.searchParams.getAll('offset')?.[0];
-    const isFavorite = req.url.searchParams.getAll('isFavorite')?.[0];
-    const type = req.url.searchParams.getAll('type')?.[0];
-    const search = req.url.searchParams.getAll('search')?.[0];
+  graphql.query('pokemons', ({ variables }, res, ctx) => {
+    if (variables.limit === TOTAL_LIMIT) {
+      return res(ctx.data({ ...pokemonPageableOne.data }));
+    }
 
-    if (search === 'Bul') return res(ctx.json(pokemonPageableOneSearch));
-    if (search === 'no results') return res(ctx.json(pokemonPageableNoResults));
-    if (type === 'Grass') return res(ctx.json(pokemonPageableOneType));
-    if (isFavorite === 'true') return res(ctx.json(pokemonPageableOneFavorites));
-    if (offset === '0') return res(ctx.delay(2000), ctx.json(pokemonPageableOne));
+    if (variables.limit !== TOTAL_LIMIT && variables.offset === 0) {
+      return res(ctx.delay(2000), ctx.data({ ...pokemonPageableOne.data }));
+    }
 
-    return res(ctx.delay(2000), ctx.json(pokemonPageableTwo));
+    return res(ctx.delay(2000), ctx.data({ ...pokemonPageableTwo.data }));
   }),
-  rest.get(/\/pokemon\/[0-9]{3}/, (_req, res, ctx) => {
+  rest.get(/\/pokemon\/[0-9]{1}/, (_req, res, ctx) => {
     return res(ctx.delay(2000), ctx.json(pokemon));
   }),
-  rest.get(/\/pokemon-types/, (_req, res, ctx) => {
+  rest.get(/\/type\/grass/, (_req, res, ctx) => {
+    return res(ctx.json(pokemonPageableOneType));
+  }),
+  rest.get(/\/type/, (_req, res, ctx) => {
     return res(ctx.json(pokemonTypes));
   }),
   // ----------------------------------------------------------------------

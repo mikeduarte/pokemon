@@ -1,176 +1,93 @@
 {
-    "limit": 16,
-    "offset": 0,
-    "count": 17,
-    "items": [
-        {
-            "id": "001",
-            "number": 1,
-            "name": "Bulbasaur",
-            "image": "https://img.pokemondb.net/artwork/bulbasaur.jpg",
-            "isFavorite": false,
-            "types": [
-                "Grass",
-                "Poison"
-            ]
-        },
-        {
-            "id": "002",
-            "number": 2,
-            "name": "Ivysaur",
-            "image": "https://img.pokemondb.net/artwork/ivysaur.jpg",
-            "isFavorite": true,
-            "types": [
-                "Grass",
-                "Poison"
-            ]
-        },
-        {
-            "id": "003",
-            "number": 3,
-            "name": "Venusaur",
-            "image": "https://img.pokemondb.net/artwork/venusaur.jpg",
-            "isFavorite": true,
-            "types": [
-                "Grass",
-                "Poison"
-            ]
-        },
-        {
-            "id": "004",
-            "number": 4,
-            "name": "Charmander",
-            "image": "https://img.pokemondb.net/artwork/charmander.jpg",
-            "isFavorite": true,
-            "types": [
-                "Fire"
-            ]
-        },
-        {
-            "id": "005",
-            "number": 5,
-            "name": "Charmeleon",
-            "image": "https://img.pokemondb.net/artwork/charmeleon.jpg",
-            "isFavorite": false,
-            "types": [
-                "Fire"
-            ]
-        },
-        {
-            "id": "006",
-            "number": 6,
-            "name": "Charizard",
-            "image": "https://img.pokemondb.net/artwork/charizard.jpg",
-            "isFavorite": false,
-            "types": [
-            "Fire",
-                "Flying"
-            ]
-        },
-        {
-            "id": "007",
-            "number": 7,
-            "name": "Squirtle",
-            "image": "https://img.pokemondb.net/artwork/squirtle.jpg",
-            "isFavorite": true,
-            "types": [
-                "Water"
-            ]
-        },
-        {
-            "id": "008",
-            "number": 8,
-            "name": "Wartortle",
-            "image": "https://img.pokemondb.net/artwork/wartortle.jpg",
-            "isFavorite": false,
-            "types": [
-                "Water"
-            ]
-        },
-        {
-            "id": "009",
-            "number": 9,
-            "name": "Blastoise",
-            "image": "https://img.pokemondb.net/artwork/blastoise.jpg",
-            "isFavorite": false,
-            "types": [
-                "Water"
-            ]
-        },
-        {
-            "id": "010",
-            "number": 10,
-            "name": "Caterpie",
-            "image": "https://img.pokemondb.net/artwork/caterpie.jpg",
-            "isFavorite": false,
-            "types": [
-                "Bug"
-            ]
-        },
-        {
-            "id": "011",
-            "number": 11,
-            "name": "Metapod",
-            "image": "https://img.pokemondb.net/artwork/metapod.jpg",
-            "isFavorite": false,
-            "types": [
-                "Bug"
-            ]
-        },
-        {
-            "id": "012",
-            "number": 12,
-            "name": "Butterfree",
-            "image": "https://img.pokemondb.net/artwork/butterfree.jpg",
-            "isFavorite": false,
-            "types": [
-            "Bug",
-                "Flying"
-            ]
-        },
-        {
-            "id": "013",
-            "number": 13,
-            "name": "Weedle",
-            "image": "https://img.pokemondb.net/artwork/weedle.jpg",
-            "isFavorite": true,
-            "types": [
-                "Bug",
-                "Poison"
-            ]
-        },
-        {
-            "id": "014",
-            "number": 14,
-            "name": "Kakuna",
-            "image": "https://img.pokemondb.net/artwork/kakuna.jpg",
-            "isFavorite": true,
-            "types": [
-                "Bug",
-                "Poison"
-            ]
-        },
-        {
-            "id": "015",
-            "number": 15,
-            "name": "Beedrill",
-            "image": "https://img.pokemondb.net/artwork/beedrill.jpg",
-            "isFavorite": true,
-            "types": [
-                "Bug",
-                "Poison"
-            ]
-        },
-        {
-            "id": "016",
-            "number": 16,
-            "name": "Pidgey",
-            "image": "https://img.pokemondb.net/artwork/pidgey.jpg",
-            "isFavorite": true,
-            "types": [
-                "Normal",
-                "Flying"
+    "data": {
+        "pokemons": {
+            "count": 1302,
+            "next": "https://pokeapi.co/api/v2/pokemon/?offset=16&limit=16",
+            "previous": null,
+            "status": true,
+            "message": "",
+            "results": [
+                {
+                    "id": 1,
+                    "name": "bulbasaur",
+                    "artwork": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/1.png"
+                },
+                {
+                    "id": 2,
+                    "name": "ivysaur",
+                    "artwork": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/2.png"
+                },
+                {
+                    "id": 3,
+                    "name": "venusaur",
+                    "artwork": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/3.png"
+                },
+                {
+                    "id": 4,
+                    "name": "charmander",
+                    "artwork": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/4.png"
+                },
+                {
+                    "id": 5,
+                    "name": "charmeleon",
+                    "artwork": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/5.png"
+                },
+                {
+                    "id": 6,
+                    "name": "charizard",
+                    "artwork": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/6.png"
+                },
+                {
+                    "id": 7,
+                    "name": "squirtle",
+                    "artwork": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/7.png"
+                },
+                {
+                    "id": 8,
+                    "name": "wartortle",
+                    "artwork": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/8.png"
+                },
+                {
+                    "id": 9,
+                    "name": "blastoise",
+                    "artwork": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/9.png"
+                },
+                {
+                    "id": 10,
+                    "name": "caterpie",
+                    "artwork": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10.png"
+                },
+                {
+                    "id": 11,
+                    "name": "metapod",
+                    "artwork": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/11.png"
+                },
+                {
+                    "id": 12,
+                    "name": "butterfree",
+                    "artwork": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/12.png"
+                },
+                {
+                    "id": 13,
+                    "name": "weedle",
+                    "artwork": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/13.png"
+                },
+                {
+                    "id": 14,
+                    "name": "kakuna",
+                    "artwork": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/14.png"
+                },
+                {
+                    "id": 15,
+                    "name": "beedrill",
+                    "artwork": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/15.png"
+                },
+                {
+                    "id": 16,
+                    "name": "pidgey",
+                    "artwork": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/16.png"
+                }
             ]
         }
-    ]
+    }
 }

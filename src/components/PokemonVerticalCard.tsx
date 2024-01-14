@@ -1,11 +1,11 @@
-import { ReactNode } from 'react';
+import { ReactNode, useContext } from 'react';
 import { Box, Card, CardContent, Stack } from '@mui/material';
+
 import FavoriteButton from './common/FavoriteButton';
 import PokemonImage from './common/PokemonImage';
-
-import SoundButton from './common/SoundButton';
 import PokemonCardTitle from './common/PokemonCardTitle';
 import { Pokemon } from '../types/Pokemon';
+import { FavoritesContext } from '../contexts/FavoritesContext';
 
 type PokemonCardProps = {
   disableBorder?: boolean;
@@ -13,23 +13,21 @@ type PokemonCardProps = {
   children?: ReactNode;
   id: Pokemon['id'];
   image: Pokemon['image'];
-  isFavorite: Pokemon['isFavorite'];
   name: Pokemon['name'];
-  types: Pokemon['types'];
-  sound?: Pokemon['sound'];
+  types?: Pokemon['types'];
 };
 
 const PokemonVerticalCard = ({
   id,
   image,
-  isFavorite,
   name,
   types,
-  sound,
   disableBorder,
   disableHover,
   children,
 }: PokemonCardProps) => {
+  const { favorites } = useContext(FavoritesContext);
+
   return (
     <Card
       data-testid="pokemon-vertical-card"
@@ -49,13 +47,8 @@ const PokemonVerticalCard = ({
         sx={{ width: '100%', position: 'absolute', left: '0', top: '10px', pr: 1.25, zIndex: 99 }}
       >
         <Stack direction="row" justifyContent="space-between" width="100%">
-          {sound && (
-            <Box sx={{ mt: -0.75 }}>
-              <SoundButton sound={sound} name={name} />
-            </Box>
-          )}
           <Box sx={{ ml: 'auto' }}>
-            <FavoriteButton id={id} isFavorite={isFavorite} name={name} />
+            <FavoriteButton id={id} isFavorite={favorites[id]} name={name} />
           </Box>
         </Stack>
       </Box>

@@ -1,18 +1,18 @@
 {
-    "limit": 16,
-    "offset": 16,
-    "count": 17,
-    "items": [
-        {
-            "id": "017",
-            "number": 17,
-            "name": "Pidgeotto",
-            "image": "https://img.pokemondb.net/artwork/pidgeotto.jpg",
-            "isFavorite": true,
-            "types": [
-                "Normal",
-                "Flying"
+    "data": {
+        "pokemons": {
+            "count": 1302,
+            "next": "https://pokeapi.co/api/v2/pokemon/?offset=32&limit=16",
+            "previous": null,
+            "status": true,
+            "message": "",
+            "results": [
+                {
+                    "id": 17,
+                    "name": "pidgeotto",
+                    "artwork": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/1.png"
+                }
             ]
         }
-    ]
+    }
 }

@@ -1,4 +1,7 @@
+import { Base } from './Base';
+
 export interface PokemonStat {
-  maximum: string;
-  minimum: string;
+  base_stat: number;
+  effort: number;
+  stat: Base;
 }

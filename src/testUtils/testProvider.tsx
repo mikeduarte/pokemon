@@ -1,13 +1,23 @@
 import { MemoryRouter } from 'react-router-dom';
 import { ThemeProvider } from '@mui/material';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { vi } from 'vitest';
 
 import { QUERY_CLIENT_CONFIG } from '../config';
 import theme from '../theme';
 import SnackbarProvider from '../contexts/SnackbarContext';
+import { FavoritesContext } from '../contexts/FavoritesContext';
 
 type Props = {
   children: React.ReactNode;
+};
+
+const mockOnFavoritesChange = vi.fn();
+const defaultValue = {
+  1: true,
+  2: true,
+  3: true,
+  4: true,
 };
 
 const TestProvider: React.FC<Props> = ({ children }) => {
@@ -25,7 +35,13 @@ const TestProvider: React.FC<Props> = ({ children }) => {
     <QueryClientProvider client={queryClient}>
       <MemoryRouter>
         <ThemeProvider theme={theme}>
-          <SnackbarProvider>{children}</SnackbarProvider>
+          <SnackbarProvider>
+            <FavoritesContext.Provider
+              value={{ favorites: { ...defaultValue }, onFavoritesChange: mockOnFavoritesChange }}
+            >
+              {children}
+            </FavoritesContext.Provider>
+          </SnackbarProvider>
         </ThemeProvider>
       </MemoryRouter>
     </QueryClientProvider>
